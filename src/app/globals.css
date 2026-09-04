@@ -99,9 +99,9 @@
   --popover-foreground: hsl(45 20% 93%);
   --primary: hsl(45 20% 93%);
   --primary-foreground: hsl(226 25% 8%);
-  --secondary: hsl(226 18% 14%);
+  --secondary: hsl(226 18% 15%);
   --secondary-foreground: hsl(45 20% 93%);
-  --muted: hsl(226 18% 13%);
+  --muted: hsl(226 18% 15%);
   --muted-foreground: hsl(226 8% 64%);
   --accent: hsl(226 18% 16%);
   --accent-foreground: hsl(45 20% 93%);

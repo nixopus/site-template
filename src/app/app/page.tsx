@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { AppShell } from "@/components/blocks/app/app-shell";
 import { ShipmentsTable } from "@/components/blocks/app/shipments-table";
 import { StatRow } from "@/components/blocks/app/stat-row";
+import { ThemeToggle } from "@/components/blocks/theme-toggle";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
@@ -19,7 +20,10 @@ export default function AppPage() {
             Board as of 06:00 PT
           </p>
         </div>
-        <Button size="sm">New booking</Button>
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          <Button size="sm">New booking</Button>
+        </div>
       </header>
       <main className="flex-1">
         <StatRow />

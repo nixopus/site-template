@@ -8,6 +8,7 @@ import { PrimitivesBoard } from "@/components/blocks/design/primitives-board";
 import { Specimen } from "@/components/blocks/design/specimen";
 import { SwatchGrid } from "@/components/blocks/design/swatch-grid";
 import { TypeSpecimen } from "@/components/blocks/design/type-specimen";
+import { ThemeToggle } from "@/components/blocks/theme-toggle";
 
 export const metadata: Metadata = {
   title: "Design system",
@@ -32,6 +33,9 @@ export default function DesignPage() {
       </header>
       <Specimen title="Tokens" note="hsl values in globals.css">
         <SwatchGrid />
+      </Specimen>
+      <Specimen title="Theme toggle" note="blocks/theme-toggle">
+        <ThemeToggle />
       </Specimen>
       <Specimen title="Type" note="Archivo + IBM Plex Mono">
         <TypeSpecimen />

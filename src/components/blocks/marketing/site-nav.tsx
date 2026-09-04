@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ThemeToggle } from "@/components/blocks/theme-toggle";
 import { Button } from "@/components/ui/button";
 
 const links = [
@@ -29,9 +30,12 @@ export function SiteNav() {
             </Link>
           ))}
         </div>
-        <Button asChild size="sm">
-          <Link href="/app">Start tracking</Link>
-        </Button>
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          <Button asChild size="sm">
+            <Link href="/app">Start tracking</Link>
+          </Button>
+        </div>
       </nav>
     </header>
   );

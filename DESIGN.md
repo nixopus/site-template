@@ -28,7 +28,7 @@ color used small.
 | `background` | `hsl(45 25% 96.5%)` | `hsl(226 25% 8%)` | paper / night ink |
 | `foreground` | `hsl(226 30% 11%)` | `hsl(45 20% 93%)` | ink / paper |
 | `primary` | `hsl(226 42% 15%)` | `hsl(45 20% 93%)` | brand ink — buttons, emphasis |
-| `muted` | `hsl(45 14% 91%)` | `hsl(226 18% 13%)` | recessed surfaces |
+| `muted` | `hsl(45 14% 91%)` | `hsl(226 18% 15%)` | recessed surfaces |
 | `muted-foreground` | `hsl(226 10% 40%)` | `hsl(226 8% 64%)` | secondary text |
 | `border` | `hsl(226 14% 82%)` | `hsl(226 12% 22%)` | the hairlines |
 | `signal` | `hsl(24 96% 49%)` | `hsl(24 95% 55%)` | THE accent — status, ticks, focus |
@@ -37,6 +37,27 @@ color used small.
 **Signal discipline:** orange appears only as marks — status dots, ticks, one underline, the
 focus ring, a countdown figure. Never as a fill larger than ~2rem square, never as decoration.
 1 brand (ink), 3 neutrals (paper, muted, border), 1 accent (signal). That's the whole palette.
+
+### Dark mode — the ink edition
+
+The same manifest printed on a second stock: near-black ink paper, off-white ink. It is a
+designed edition, not an inversion — the token table above is the entire difference, and no
+component changes between modes.
+
+- **Hairlines stay hairlines.** `border` drops to `hsl(226 12% 22%)` — legible against the
+  8%-lightness page, never luminous. If a rule glows, the token is too light; dim the token,
+  don't touch the component.
+- **Signal holds identity.** Same hue and saturation, luminance lifted one step
+  (`hsl(24 95% 55%)`) so dots, ticks, and the countdown figure keep reading on ink. It stays
+  a mark — the size discipline above applies in both modes.
+- **Record data stays secondary.** `muted-foreground` sits at 64% lightness: clearly above
+  the hairlines, clearly below `foreground`, so mono reference data keeps its rank.
+- **The console sidebar is ink in both modes** — it prints on the `sidebar-*` tokens and
+  simply gets a darker sheet (`hsl(226 28% 6%)`) in the dark edition.
+
+Mechanics: `next-themes` class strategy, light by default — the paper look is the identity.
+The switch is `blocks/theme-toggle`, a mono record field reading `MODE: LIGHT` /
+`MODE: DARK`: the current stock stated as data, the way this document states everything.
 
 ## 4. Type (two faces, fixed roles)
 
