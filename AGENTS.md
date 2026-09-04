@@ -13,6 +13,19 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 Rules for any agent (or human) editing a site built from this template. `npm run build`
 enforces the machine-checkable subset via `scripts/check-rules.mjs`; the rest is still binding.
 
+## Chassis vs identity (what you keep, what you replace)
+This template is a chassis wearing a disposable demo identity.
+- **Chassis (permanent):** the stack, the semantic token SLOTS and their light/dark structure,
+  every rule in this file, `scripts/check-rules.mjs`, the block mechanism and the `/design`
+  catalog, the `src/components/ui/` stdlib, the Dockerfile.
+- **Identity (per-site):** DESIGN.md's content, the token VALUES, the typefaces, the bold move
+  and its flourishes — for Ballast: the ruled manifest frame, the registration ticks,
+  signal-orange — and all demo copy.
+- The first act on a new site is writing a fresh DESIGN.md (named direction, exact palette,
+  two typefaces, motion numbers, one bold move) and replacing the identity. Never inherit
+  Ballast's look: Ballast is the worked example proving the system, not the starting point.
+  Blocks provide structure; their skin follows the new tokens.
+
 ## Read first
 - Read `DESIGN.md` before styling anything. It is the brief; obey it. No `DESIGN.md`? Write one
   first: named direction, exact palette as tokens, two typefaces with roles, spacing scale,
@@ -21,9 +34,9 @@ enforces the machine-checkable subset via `scripts/check-rules.mjs`; the rest is
 
 ## Styling
 - Tokens only. Style through semantic classes (`bg-background`, `text-muted-foreground`,
-  `border-border`, `text-signal`). Never raw palette classes (`bg-blue-500`, `text-white`,
-  `bg-black/50`) and never hex/rgb/hsl literals in components. New color = new token in
-  `src/app/globals.css` (both themes), then use the class.
+  `border-border`, the site's accent — Ballast's is `text-signal`). Never raw palette classes
+  (`bg-blue-500`, `text-white`, `bg-black/50`) and never hex/rgb/hsl literals in components.
+  New color = new token in `src/app/globals.css` (both themes), then use the class.
 - Change the theme by editing tokens in `globals.css`, not by touching components.
 - Respect the radius stance and type roles in `DESIGN.md`. Do not add box-shadows, gradients,
   or a third typeface on a whim — that is a `DESIGN.md` change.
@@ -93,7 +106,7 @@ enforces the machine-checkable subset via `scripts/check-rules.mjs`; the rest is
 - Semantic landmarks: one `<h1>` per page, `<header>/<main>/<nav>/<footer>`, headings in order.
 - Every image gets meaningful `alt`; decorative images get `alt=""`.
 - Interactive elements are buttons/links, keyboard-reachable, with visible focus (`ring` token).
-- Maintain ≥4.5:1 contrast for text; check anything placed on `muted` or `signal`.
+- Maintain ≥4.5:1 contrast for text; check anything placed on `muted` or the accent token.
 
 ## Hygiene
 - NEVER commit secrets, tokens, or `.env` values. Env vars are configured on the deployment

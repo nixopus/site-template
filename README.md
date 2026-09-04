@@ -7,6 +7,11 @@ the template produces designed output, not defaults.
 
 **Stack:** Next.js (App Router) · TypeScript · Tailwind CSS v4 · shadcn/ui
 
+**Chassis, not a look.** You keep the stack, the rules, the checks, the token slots, the block
+mechanism, and the `ui/` stdlib; you replace DESIGN.md, the token values, the typefaces, and
+every word of demo copy. A new site's first act is a fresh DESIGN.md — Ballast proves the
+system, it is not the starting point.
+
 ## The rules system
 
 Design quality here is enforced, not hoped for. Three layers:
