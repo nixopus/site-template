@@ -46,8 +46,9 @@ focus ring, a countdown figure. Never as a fill larger than ~2rem square, never 
 | **IBM Plex Mono** | Reference data | Overlines, record codes, container IDs, table numerals, footer. 400/500, overlines uppercase +0.14em tracking. |
 
 Scale: 12 (mono label) / 14 / 16 (body) / 18 / 20 / 25 / 31 — ratio 1.25 — then one deliberate
-jump to display `clamp(3.25rem, 6.5vw + 1rem, 6.75rem)`. Nothing between 31px and display: the
-gap **is** the hierarchy.
+jump to display `clamp(2.5rem, 6.2vw + 1rem, 6rem)`. Nothing between 31px and display: the
+gap **is** the hierarchy. The 2.5rem floor is load-bearing — it is what keeps the longest
+headline word inside a 390px viewport.
 
 ## 5. Space, radius, depth
 

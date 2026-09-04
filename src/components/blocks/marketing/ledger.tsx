@@ -46,7 +46,14 @@ export function LedgerSection({
           <span className="type-overline text-muted-foreground">/ {code}</span>
         </header>
       )}
-      <div className={cn("px-6 py-14 md:px-12 md:py-20", className)}>{children}</div>
+      <div
+        className={cn(
+          index ? "px-6 pt-10 pb-14 md:px-12 md:pt-12 md:pb-20" : "px-6 py-14 md:px-12 md:py-20",
+          className
+        )}
+      >
+        {children}
+      </div>
     </section>
   );
 }

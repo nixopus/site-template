@@ -20,7 +20,7 @@ export default function DesignPage() {
     <main className="mx-auto w-full max-w-6xl flex-1 border-x border-border px-6 py-16 md:px-12">
       <header className="pb-12">
         <p className="type-overline text-muted-foreground">Reference</p>
-        <h1 className="type-display mt-4 text-5xl md:text-6xl">Design system</h1>
+        <h1 className="type-display mt-4 text-[clamp(2rem,5vw+0.5rem,3.75rem)]">Design system</h1>
         <p className="mt-6 max-w-xl leading-relaxed text-muted-foreground">
           Everything on this page is styled through the semantic tokens in
           globals.css — the rules live in AGENTS.md, the brief in DESIGN.md.

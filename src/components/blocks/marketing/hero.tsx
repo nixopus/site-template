@@ -16,9 +16,9 @@ export function Hero() {
           Manifest no. 0001
         </p>
       </div>
-      <h1 className="type-display text-[clamp(3.25rem,6.5vw+1rem,6.75rem)]">
+      <h1 className="type-display text-[clamp(2.5rem,6.2vw+1rem,6rem)]">
         Every container,{" "}
-        <span className="underline decoration-signal decoration-[0.045em] underline-offset-[0.12em]">
+        <span className="underline decoration-signal decoration-[0.045em] underline-offset-[0.12em] sm:whitespace-nowrap">
           accounted for.
         </span>
       </h1>
@@ -40,9 +40,9 @@ export function Hero() {
           </Link>
         </div>
       </div>
-      <dl className="mt-14 grid grid-cols-1 gap-px border-t border-border pt-6 sm:grid-cols-3 md:mt-20">
+      <dl className="mt-14 grid grid-cols-1 divide-y divide-border border-t border-border sm:grid-cols-3 sm:divide-x sm:divide-y-0 md:mt-20">
         {proof.map((item) => (
-          <div key={item.label} className="py-2">
+          <div key={item.label} className="py-5 sm:first:pl-0 sm:not-first:pl-8">
             <dt className="type-overline text-muted-foreground">{item.label}</dt>
             <dd className="mt-2 font-mono text-2xl text-foreground">{item.value}</dd>
           </div>

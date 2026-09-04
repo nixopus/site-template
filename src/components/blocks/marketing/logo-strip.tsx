@@ -9,11 +9,9 @@ const importers = [
 
 export function LogoStrip() {
   return (
-    <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-12">
-      <p className="type-overline shrink-0 text-muted-foreground">
-        Kept moving by
-      </p>
-      <ul className="flex flex-wrap items-baseline gap-x-10 gap-y-4">
+    <div>
+      <p className="type-overline text-muted-foreground">Kept moving by</p>
+      <ul className="mt-6 flex flex-wrap items-baseline gap-x-8 gap-y-4 md:justify-between">
         {importers.map((name) => (
           <li
             key={name}

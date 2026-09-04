@@ -39,8 +39,8 @@ export function RecordDemurrage() {
             </div>
           ))}
         </div>
-        <p className="mt-6 font-mono text-sm text-muted-foreground">
-          Beyond Friday: $285/day. Ballast has already booked the dray.
+        <p className="mt-6 max-w-sm font-mono text-sm text-muted-foreground">
+          Beyond Friday: $285/day. The dray is already booked.
         </p>
       </div>
     </div>

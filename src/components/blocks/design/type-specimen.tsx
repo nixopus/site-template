@@ -1,5 +1,5 @@
 const rows = [
-  { note: "Display / Archivo 800 wide / clamp 52–108", sample: "Manifest", className: "type-display text-[clamp(3.25rem,6.5vw+1rem,6.75rem)]" },
+  { note: "Display / Archivo 800 wide / clamp 40–96", sample: "Manifest", className: "type-display text-[clamp(2.5rem,6.2vw+1rem,6rem)]" },
   { note: "H2 / Archivo 700 / 30–36", sample: "One timeline per box, gate to door.", className: "font-heading text-3xl font-bold tracking-tight md:text-4xl" },
   { note: "H3 / Archivo 700 / 20", sample: "A clock on every container.", className: "font-heading text-xl font-bold tracking-tight" },
   { note: "Body / Archivo 400 / 16 / 1.625", sample: "Carrier milestones, terminal feeds, and rail events reconciled into a single timeline.", className: "max-w-xl leading-relaxed" },

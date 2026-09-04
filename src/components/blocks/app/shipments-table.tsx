@@ -29,7 +29,7 @@ export function ShipmentsTable() {
     <div className="overflow-x-auto">
       <Table>
         <TableHeader>
-          <TableRow className="border-border hover:bg-transparent">
+          <TableRow className="border-border bg-muted/60 hover:bg-muted/60">
             {["Container", "Route", "Vessel", "ETA", "Free days", "Status"].map((head) => (
               <TableHead key={head} className="type-overline h-11 px-6 text-muted-foreground">
                 {head}

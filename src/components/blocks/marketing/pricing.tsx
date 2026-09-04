@@ -46,7 +46,10 @@ export function Pricing() {
             tier.featured && "bg-primary text-primary-foreground"
           )}
         >
-          <h3 className="type-overline">{tier.name}</h3>
+          <div className="flex items-baseline justify-between">
+            <h3 className="type-overline">{tier.name}</h3>
+            {tier.featured && <p className="type-overline text-signal">Most booked</p>}
+          </div>
           <p className="mt-6 font-mono text-4xl">
             {tier.price}
             <span className="text-sm">{tier.per}</span>
