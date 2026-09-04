@@ -34,10 +34,9 @@ export function RecordDocuments() {
           The paperwork files itself.
         </h2>
         <p className="mt-6 max-w-md leading-relaxed text-muted-foreground">
-          Forward the booking confirmation and Ballast reads the rest: bills of
-          lading, invoices, and packing lists, matched to the right container
-          and named the way your customs broker expects. One missing certificate is
-          flagged in orange, not discovered at the terminal gate.
+          Forward the booking confirmation; Ballast files the rest under the
+          names your broker expects. One missing certificate is flagged in
+          orange, not discovered at the terminal gate.
         </p>
       </div>
     </div>

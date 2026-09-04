@@ -77,6 +77,9 @@ headline word inside a 390px viewport.
   96px desktop / 64px mobile. Content column: max-width 72rem.
 - Radius: **0 everywhere.** Sharp corners are the stance; do not soften individual components.
 - Depth: none. No box-shadows. Hierarchy comes from rules, surface shifts (`muted`), and type.
+- Density: whitespace is the conversion tool (`AGENTS.md > Landing density`). The demo holds
+  the budgets — subline ≤16 words, record bodies ≤2 sentences, the CTA band one line + one
+  button; a weak section loses text and gains space, never the reverse.
 
 ## 6. Motion
 

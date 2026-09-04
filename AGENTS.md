@@ -54,6 +54,18 @@ enforces the machine-checkable subset via `scripts/check-rules.mjs`; the rest is
 - Error messages say what happened and what to do next.
 - One idea per sentence. Cut filler transitions: Moreover, Furthermore, Additionally.
 
+## Landing density (scarce words, generous space)
+- Say it in the title. A description exists only for a fact the title cannot carry; a
+  description that restates its title gets deleted, not rewritten.
+- Budgets: hero headline ≤7 words; hero subline ≤16; section intro = one sentence;
+  feature/record body ≤2 sentences; CTA section = one line + one button, nothing else.
+- Whitespace is the conversion tool — attention concentrates on what little text remains.
+  When a section feels weak, remove text and widen spacing BEFORE adding anything.
+- One message per section. A section that needs a paragraph to explain itself is the
+  wrong section.
+- Landing defaults only: app screens and docs-like pages (FAQ answers, legal) are exempt
+  where information genuinely needs the words.
+
 ## Components
 - Small and composable: one block per file, ≤80 lines target, 120 hard cap (build fails).
   `src/components/ui/` (vendored primitives) is exempt.

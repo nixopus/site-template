@@ -42,8 +42,7 @@ export function RecordCustoms() {
         <p className="mt-6 max-w-md leading-relaxed text-muted-foreground">
           Ballast classifies your lines against the harmonized tariff at
           booking, so landed cost is a number you plan with, not a bill you
-          absorb. Your broker gets a seat, the entry packet, and no Tuesday
-          morning scavenger hunt.
+          absorb. Your broker gets a seat and the entry packet.
         </p>
       </div>
     </div>

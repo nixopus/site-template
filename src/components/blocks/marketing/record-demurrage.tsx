@@ -15,9 +15,8 @@ export function RecordDemurrage() {
         </h2>
         <p className="mt-6 max-w-md leading-relaxed text-muted-foreground">
           Terminals charge by the day and invoice in arrears. Ballast counts
-          your free time per terminal tariff, alerts the whole team at two days
-          out, and states the tab in dollars, not as a surprise six weeks
-          later.
+          your free time per terminal tariff and alerts the whole team two
+          days out.
         </p>
       </div>
       <div className="flex flex-col justify-center">
