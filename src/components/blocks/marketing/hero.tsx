@@ -24,9 +24,9 @@ export function Hero() {
       </h1>
       <div className="mt-10 flex flex-col gap-8 md:mt-14 md:flex-row md:items-end md:justify-between">
         <p className="max-w-xl text-lg leading-relaxed text-muted-foreground">
-          Ballast tracks your shipments from factory floor to warehouse door —
-          bookings, documents, customs, and the demurrage clock — in one ledger
-          your whole team can read.
+          Ballast tracks every shipment from factory floor to warehouse door.
+          Bookings, documents, customs, and the demurrage clock live in one
+          ledger your whole team can read.
         </p>
         <div className="flex shrink-0 items-center gap-6">
           <Button asChild size="lg" className="px-6">

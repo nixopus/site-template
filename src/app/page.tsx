@@ -14,11 +14,11 @@ import { SiteFooter } from "@/components/blocks/marketing/site-footer";
 import { SiteNav } from "@/components/blocks/marketing/site-nav";
 
 export const metadata: Metadata = {
-  title: "Ballast — Every container, accounted for",
+  title: "Ballast · Every container, accounted for",
   description:
     "Freight operations for small importers: live container tracking, self-filing paperwork, a demurrage clock, and duty estimated at booking.",
   openGraph: {
-    title: "Ballast — Every container, accounted for",
+    title: "Ballast · Every container, accounted for",
     description:
       "Freight operations for small importers. Bookings, documents, customs, and the demurrage clock in one ledger.",
     type: "website",

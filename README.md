@@ -19,7 +19,9 @@ Design quality here is enforced, not hoped for. Three layers:
 
 `npm run build` fails on: raw Tailwind palette classes (`bg-blue-500`, `text-white`), hex/rgb/hsl
 literals in components, lorem ipsum anywhere, component files over 120 lines, and pages missing
-a `metadata` export. Run it standalone with `npm run check`.
+a `metadata` export. Copy is enforced too: em dashes, the banned-vocabulary list, and default
+CTAs ("Get Started" / "Learn More") in site copy all fail the build (`AGENTS.md > Copy`).
+Run it standalone with `npm run check`.
 
 ## Demo routes
 

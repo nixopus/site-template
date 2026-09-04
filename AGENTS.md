@@ -34,6 +34,26 @@ enforces the machine-checkable subset via `scripts/check-rules.mjs`; the rest is
 - Single-italic-word headlines. Cream+terracotta. Dark background + acid green.
 - Lorem ipsum or placeholder copy of any kind. Write real, specific copy or leave the section out.
 
+## Copy (the anti-slop discipline — build-enforced where checkable)
+- Voice lives in `DESIGN.md`: every site's brief defines register, point of view, tense,
+  sentence length, and vocabulary domain. Copy obeys it. No voice spec? Write one first.
+- No em dashes in site copy (build fails). Restructure the sentence, or use a period,
+  comma, or colon.
+- Banned vocabulary (build fails — keep the list in `check-rules.mjs` current): seamless,
+  effortless, unlock, unleash, empower, elevate, supercharge, game-changing, revolutionize,
+  delve, robust, cutting-edge, next-level, world-class, leverage (as a verb), journey,
+  "in today's fast-paced world".
+- Banned constructions: "It's not just X, it's Y". "Whether you're a X or a Y".
+  Rhetorical-question headlines. Triadic fragment slogans ("Simple. Fast. Secure.").
+  Exclamation marks. Emoji in copy.
+- Concrete over abstract: verifiable nouns and numbers over adjectives; every claim
+  checkable. NEVER fabricate testimonials, customer logos, stats, or press quotes on a real
+  site. Demo/fictional content must say it is fictional.
+- CTAs name the action ("Track a container"). "Get Started" and "Learn More" are defaults,
+  not decisions (build fails). Buttons ≤3 words.
+- Error messages say what happened and what to do next.
+- One idea per sentence. Cut filler transitions: Moreover, Furthermore, Additionally.
+
 ## Components
 - Small and composable: one block per file, ≤80 lines target, 120 hard cap (build fails).
   `src/components/ui/` (vendored primitives) is exempt.

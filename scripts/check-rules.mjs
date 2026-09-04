@@ -13,6 +13,11 @@ const PALETTE =
   "(white|black|slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)";
 const PREFIX =
   "(bg|text|border|ring|fill|stroke|from|via|to|divide|outline|decoration|shadow|accent|caret|placeholder)";
+const SLOP_WORDS = [
+  "seamless", "effortless", "unlock", "unleash", "empower", "elevate", "supercharge",
+  "game-changing", "revolutionize", "delve", "robust", "cutting-edge", "next-level",
+  "world-class", "leverage", "journey",
+];
 
 // The ruleset. Each rule: which files it applies to, how it checks, what it says.
 const RULES = [
@@ -42,6 +47,24 @@ const RULES = [
       const lines = content.split("\n").length;
       return lines > 120 ? [{ line: lines, excerpt: `${lines} lines (cap 120)` }] : [];
     },
+  },
+  {
+    id: "no-em-dash",
+    why: "No em dashes in site copy (AGENTS.md > Copy). Restructure the sentence.",
+    applies: (file) => /\.(tsx|ts)$/.test(file),
+    check: perLine(/—/),
+  },
+  {
+    id: "no-slop-vocabulary",
+    why: "Banned vocabulary (AGENTS.md > Copy). Say something concrete instead.",
+    applies: (file) => /\.(tsx|ts|mdx?)$/.test(file),
+    check: perLine(new RegExp(`\\b(${SLOP_WORDS.join("|")})\\b|in today['’]s fast-paced world`, "i")),
+  },
+  {
+    id: "no-default-cta",
+    why: 'CTAs name the action (AGENTS.md > Copy), never "Get Started" / "Learn More".',
+    applies: (file) => file.endsWith(".tsx"),
+    check: perLine(/\bget started\b|\blearn more\b/i),
   },
   {
     id: "page-needs-metadata",

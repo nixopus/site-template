@@ -13,7 +13,7 @@ import { ThemeToggle } from "@/components/blocks/theme-toggle";
 export const metadata: Metadata = {
   title: "Design system",
   description:
-    "Tokens, type roles, primitives, and blocks — the visual reference for authoring in this template.",
+    "Tokens, type roles, primitives, and blocks: the visual reference for authoring in this template.",
 };
 
 export default function DesignPage() {
@@ -24,7 +24,7 @@ export default function DesignPage() {
         <h1 className="type-display mt-4 text-[clamp(2rem,5vw+0.5rem,3.75rem)]">Design system</h1>
         <p className="mt-6 max-w-xl leading-relaxed text-muted-foreground">
           Everything on this page is styled through the semantic tokens in
-          globals.css — the rules live in AGENTS.md, the brief in DESIGN.md.
+          globals.css. The rules live in AGENTS.md, the brief in DESIGN.md.
           Change the tokens and every block follows.{" "}
           <Link href="/" className="text-foreground underline underline-offset-4 hover:text-signal">
             Back to the site

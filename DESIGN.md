@@ -83,10 +83,18 @@ headline word inside a 390px viewport.
 - Hover/focus micro: 150ms `cubic-bezier(0.25, 1, 0.5, 1)`.
 - Reveals (accordion): 300ms, same curve. No parallax, no floating blobs, no scroll hijack.
 
-## 7. Voice
+## 7. Voice (the copy spec — `AGENTS.md > Copy` applies on top)
 
-Freight vocabulary, short declaratives, numbers over adjectives. "3 free days left", not
-"powerful insights". Every string in the demo is real copy; lorem ipsum never ships.
+- **Register:** operations log. The page reads like a document a dispatcher trusts, not a
+  pitch. Freight vocabulary used correctly: demurrage, free days, discharge, drayage, HTS.
+- **Point of view:** second person for the reader ("your container"); the product is the
+  named actor ("Ballast counts your free time"). No corporate "we believe".
+- **Tense & mood:** present tense, declarative. State what the product does — never what it
+  "can help you achieve". Headlines are statements, not questions.
+- **Sentence length:** short. One idea per sentence; a three-word sentence is welcome.
+- **Vocabulary domain:** numbers over adjectives — "3 free days left", "$285/day",
+  "214 terminals", never "powerful insights". Every figure in the demo is internally
+  consistent and plainly fictional; lorem ipsum never ships.
 
 ## 8. Self-critique (kept, so the next author sees the method)
 

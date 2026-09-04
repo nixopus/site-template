@@ -1,9 +1,9 @@
 const stages = [
-  { date: "Sep 02", stage: "Factory gate — Huizhou", state: "done" },
-  { date: "Sep 04", stage: "Origin port — Qingdao", state: "done" },
-  { date: "Now", stage: "On water — Pacific crossing", state: "current" },
-  { date: "Sep 12", stage: "Discharge — Oakland OICT", state: "next" },
-  { date: "Sep 14", stage: "Rail — BNSF to Reno", state: "next" },
+  { date: "Sep 02", stage: "Factory gate, Huizhou", state: "done" },
+  { date: "Sep 04", stage: "Origin port, Qingdao", state: "done" },
+  { date: "Now", stage: "On water, Pacific crossing", state: "current" },
+  { date: "Sep 12", stage: "Discharge, Oakland OICT", state: "next" },
+  { date: "Sep 14", stage: "Rail, BNSF to Reno", state: "next" },
   { date: "Sep 16", stage: "Warehouse door", state: "next" },
 ];
 
@@ -16,7 +16,7 @@ export function RecordTracking() {
         </h2>
         <p className="mt-6 max-w-md leading-relaxed text-muted-foreground">
           Carrier milestones, terminal feeds, and rail events reconciled into a
-          single timeline — not fourteen browser tabs. When a vessel misses its
+          single timeline, not fourteen browser tabs. When a vessel misses its
           window, you know before your customer does.
         </p>
         <p className="type-overline mt-8 text-muted-foreground">

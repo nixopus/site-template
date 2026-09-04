@@ -13,9 +13,9 @@ const shipments = [
   { id: "TCLU 7203948", route: "Ningbo → Los Angeles", vessel: "Iron Gannet", eta: "Sep 09", free: "1", status: "At berth" },
   { id: "FSCU 1128462", route: "Rotterdam → Newark", vessel: "Nordic Wing", eta: "Sep 21", free: "5", status: "On water" },
   { id: "BMOU 5561203", route: "Busan → Seattle", vessel: "Sea Halcyon", eta: "Sep 08", free: "2", status: "Customs hold" },
-  { id: "GESU 9917465", route: "Haiphong → Long Beach", vessel: "Cormorant", eta: "Sep 30", free: "—", status: "Loading" },
+  { id: "GESU 9917465", route: "Haiphong → Long Beach", vessel: "Cormorant", eta: "Sep 30", free: "-", status: "Loading" },
   { id: "TGHU 3348190", route: "Chennai → Savannah", vessel: "Atlas Century", eta: "Arrived", free: "0", status: "On rail" },
-  { id: "CAIU 8804312", route: "Santos → Houston", vessel: "Austral Dawn", eta: "Delivered", free: "—", status: "Delivered" },
+  { id: "CAIU 8804312", route: "Santos → Houston", vessel: "Austral Dawn", eta: "Delivered", free: "-", status: "Delivered" },
 ];
 
 function statusClass(status: string) {
@@ -46,7 +46,7 @@ export function ShipmentsTable() {
               <TableCell className="px-6 font-mono text-xs">{row.eta}</TableCell>
               <TableCell
                 className={`px-6 font-mono text-xs ${
-                  row.free !== "—" && Number(row.free) <= 2 ? "text-signal" : ""
+                  row.free !== "-" && Number(row.free) <= 2 ? "text-signal" : ""
                 }`}
               >
                 {row.free}

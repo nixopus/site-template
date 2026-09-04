@@ -18,8 +18,8 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
   title: {
-    default: "Ballast — Freight operations for small importers",
-    template: "%s — Ballast",
+    default: "Ballast · Freight operations for small importers",
+    template: "%s · Ballast",
   },
   description:
     "Track every container from factory floor to warehouse door. Bookings, documents, customs, and the demurrage clock in one ledger.",

@@ -25,7 +25,7 @@ export function SiteFooter() {
           </p>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
             Freight operations for small importers. Every container, every
-            document, every free day — accounted for.
+            document, every free day, accounted for.
           </p>
         </div>
         {columns.map((column) => (
@@ -48,7 +48,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 border-x border-border px-6 py-6 font-mono text-xs text-muted-foreground md:flex-row md:justify-between md:px-12">
-          <p>© 2026 Ballast — a fictional product demonstrating this template.</p>
+          <p>© 2026 Ballast, a fictional product demonstrating this template.</p>
           <p>Pier 9 · San Francisco, CA</p>
         </div>
       </div>

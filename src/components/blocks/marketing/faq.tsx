@@ -12,7 +12,7 @@ const questions = [
   },
   {
     q: "Do you replace my freight forwarder?",
-    a: "No. Your forwarder moves the freight; Ballast makes sure you can see it. Most customers give their forwarder a seat — the arguments get shorter when both sides read the same timeline.",
+    a: "No. Your forwarder moves the freight; Ballast makes sure you can see it. Most customers give their forwarder a seat. The arguments get shorter when both sides read the same timeline.",
   },
   {
     q: "How does the demurrage clock work?",
@@ -20,7 +20,7 @@ const questions = [
   },
   {
     q: "Can my customs broker log in?",
-    a: "Yes — broker seats are free on every plan. Brokers see documents and duty lines for the shipments they're assigned, and nothing else.",
+    a: "Yes, and broker seats are free on every plan. Brokers see documents and duty lines for the shipments they're assigned, and nothing else.",
   },
   {
     q: "What does onboarding look like?",

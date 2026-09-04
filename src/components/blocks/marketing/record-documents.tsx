@@ -2,7 +2,7 @@ const documents = [
   { code: "MBL", name: "Master bill of lading", ref: "MBL-882310", status: "Filed" },
   { code: "CI", name: "Commercial invoice", ref: "INV-2209", status: "Filed" },
   { code: "PL", name: "Packing list", ref: "PL-2209", status: "Filed" },
-  { code: "COO", name: "Certificate of origin", ref: "—", status: "Awaiting" },
+  { code: "COO", name: "Certificate of origin", ref: "-", status: "Awaiting" },
   { code: "ISF", name: "Importer security filing", ref: "ISF-1104", status: "Filed" },
 ];
 
@@ -34,9 +34,9 @@ export function RecordDocuments() {
           The paperwork files itself.
         </h2>
         <p className="mt-6 max-w-md leading-relaxed text-muted-foreground">
-          Forward the booking confirmation and Ballast reads the rest — bills of
-          lading, invoices, packing lists — matched to the right container and
-          named the way your customs broker expects. One missing certificate is
+          Forward the booking confirmation and Ballast reads the rest: bills of
+          lading, invoices, and packing lists, matched to the right container
+          and named the way your customs broker expects. One missing certificate is
           flagged in orange, not discovered at the terminal gate.
         </p>
       </div>

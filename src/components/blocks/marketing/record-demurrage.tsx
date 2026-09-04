@@ -16,7 +16,7 @@ export function RecordDemurrage() {
         <p className="mt-6 max-w-md leading-relaxed text-muted-foreground">
           Terminals charge by the day and invoice in arrears. Ballast counts
           your free time per terminal tariff, alerts the whole team at two days
-          out, and states the tab in dollars — not in surprises, six weeks
+          out, and states the tab in dollars, not as a surprise six weeks
           later.
         </p>
       </div>
