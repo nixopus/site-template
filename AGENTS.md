@@ -60,6 +60,15 @@ enforces the machine-checkable subset via `scripts/check-rules.mjs`; the rest is
 - Edit, don't regenerate. Change the lines that need changing; never rewrite a file to make a
   small change. Reuse existing blocks and primitives before writing new ones.
 - New sections go in `src/components/blocks/`; pages compose blocks and hold no styling logic.
+- Catalog-first: before writing a new component, check `/design` and `src/components/blocks/`.
+  Compose or extend an existing block; a brand-new component means no block fit — say so.
+- Give-back: a genuinely new component is written AS a block — token-only, within the line
+  cap, self-contained under `src/components/blocks/` — and added to the `/design` catalog, so
+  it lifts back into the template.
+- Third-party UI libraries are never added for looks (no Aceternity/Magic-UI-style imports;
+  `framer-motion` only if genuinely load-bearing — build fails otherwise). Need such a piece?
+  Vendor the single component in, restyle it to the site's tokens and motion values: it
+  becomes an ordinary block under these rules.
 
 ## Routes & rendering
 - Marketing routes (landing, pricing, about) stay static — no dynamic APIs, no client-side

@@ -109,6 +109,21 @@ for (const path of walk(SRC)) {
   }
 }
 
+// Decoration libraries: vendor the one component as a block instead (AGENTS.md > Components).
+const DECORATION_DEPS = ["aceternity", "magicui", "magic-ui", "framer-motion", "tsparticles"];
+const DECORATION_ALLOWED = new Set(); // add a name here only with a written justification
+const pkg = JSON.parse(readFileSync(join(ROOT, "package.json"), "utf8"));
+const noDecorationDeps = {
+  id: "no-decoration-deps",
+  why: "UI libraries are never added for looks (AGENTS.md > Components). Vendor the single component as a block.",
+};
+for (const name of Object.keys({ ...pkg.dependencies, ...pkg.devDependencies })) {
+  const banned = name === "motion" || DECORATION_DEPS.some((dep) => name.includes(dep));
+  if (banned && !DECORATION_ALLOWED.has(name)) {
+    violations.push({ file: "package.json", rule: noDecorationDeps, line: 1, excerpt: name });
+  }
+}
+
 console.log(`check-rules: scanned ${scanned} files under src/`);
 if (violations.length > 0) {
   console.error(`\ncheck-rules: ${violations.length} violation(s)\n`);
