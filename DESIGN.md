@@ -1,0 +1,76 @@
+# DESIGN.md — the design brief for this site
+
+Every site built from this template carries a `DESIGN.md`. It is written **before any UI
+code** and is binding: agents read it first and style nothing that contradicts it. When the
+direction changes, this file changes in the same commit. This one is the brief for the demo
+site — a fictional freight-operations product called **Ballast** — and doubles as the worked
+example of the format.
+
+## 1. Direction (named, committed)
+
+**Shipping-manifest Swiss.** The page is a printed freight document: a ruled ledger frame,
+numbered records, stencil-wide display type, monospaced reference codes. Precision is the
+aesthetic — the design says "your cargo is accounted for" before the copy does. Not: corporate
+logistics blue, not startup-gradient, not brutalist-for-its-own-sake.
+
+## 2. The one bold move
+
+**The ruled manifest frame.** Two full-height vertical hairlines bound the content column for
+the entire landing page; every marketing section is a numbered record (`01 / TRACKING`)
+separated by full-bleed horizontal rules, with `+` registration ticks at rule intersections.
+Everything else is restrained: no shadows, no gradients, radius 0, two typefaces, one signal
+color used small.
+
+## 3. Palette (exact, tokens only)
+
+| Token | Light | Dark | Role |
+|---|---|---|---|
+| `background` | `hsl(45 25% 96.5%)` | `hsl(226 25% 8%)` | paper / night ink |
+| `foreground` | `hsl(226 30% 11%)` | `hsl(45 20% 93%)` | ink / paper |
+| `primary` | `hsl(226 42% 15%)` | `hsl(45 20% 93%)` | brand ink — buttons, emphasis |
+| `muted` | `hsl(45 14% 91%)` | `hsl(226 18% 13%)` | recessed surfaces |
+| `muted-foreground` | `hsl(226 10% 40%)` | `hsl(226 8% 64%)` | secondary text |
+| `border` | `hsl(226 14% 82%)` | `hsl(226 12% 22%)` | the hairlines |
+| `signal` | `hsl(24 96% 49%)` | `hsl(24 95% 55%)` | THE accent — status, ticks, focus |
+| `destructive` | `hsl(5 70% 42%)` | `hsl(5 75% 58%)` | errors only |
+
+**Signal discipline:** orange appears only as marks — status dots, ticks, one underline, the
+focus ring, a countdown figure. Never as a fill larger than ~2rem square, never as decoration.
+1 brand (ink), 3 neutrals (paper, muted, border), 1 accent (signal). That's the whole palette.
+
+## 4. Type (two faces, fixed roles)
+
+| Face | Role | Rules |
+|---|---|---|
+| **Archivo** (variable, `wdth` axis) | Display + UI text | Display: 800 weight, `font-stretch: 116%`, uppercase, line-height 0.92, tracking -0.01em. Body: 400/500, normal width. |
+| **IBM Plex Mono** | Reference data | Overlines, record codes, container IDs, table numerals, footer. 400/500, overlines uppercase +0.14em tracking. |
+
+Scale: 12 (mono label) / 14 / 16 (body) / 18 / 20 / 25 / 31 — ratio 1.25 — then one deliberate
+jump to display `clamp(3.25rem, 6.5vw + 1rem, 6.75rem)`. Nothing between 31px and display: the
+gap **is** the hierarchy.
+
+## 5. Space, radius, depth
+
+- Spacing: 4px base. Inside blocks: 8/12/16/24. Between blocks: 48/64. Section padding:
+  96px desktop / 64px mobile. Content column: max-width 72rem.
+- Radius: **0 everywhere.** Sharp corners are the stance; do not soften individual components.
+- Depth: none. No box-shadows. Hierarchy comes from rules, surface shifts (`muted`), and type.
+
+## 6. Motion
+
+- Hover/focus micro: 150ms `cubic-bezier(0.25, 1, 0.5, 1)`.
+- Reveals (accordion): 300ms, same curve. No parallax, no floating blobs, no scroll hijack.
+
+## 7. Voice
+
+Freight vocabulary, short declaratives, numbers over adjectives. "3 free days left", not
+"powerful insights". Every string in the demo is real copy; lorem ipsum never ships.
+
+## 8. Self-critique (kept, so the next author sees the method)
+
+Draft one was "Swiss grotesk + mono labels + navy/orange" — which is itself becoming an AI
+tell, and navy+orange is every logistics brand. Sharpened: navy pushed to near-black **ink**
+(a neutral, not a blue), orange demoted from brand color to **signal** with an enforceable
+size rule, and the generic "clean sections" upgraded to the literal manifest frame with
+numbered records and registration ticks. The uppercase stretched display face replaced a
+default tight-tracked grotesk headline.
