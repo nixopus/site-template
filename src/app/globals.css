@@ -27,6 +27,7 @@
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
+  --color-overlay: var(--overlay);
   --color-destructive: var(--destructive);
   --color-signal-foreground: var(--signal-foreground);
   --color-signal: var(--signal);
@@ -73,6 +74,7 @@
   --destructive: hsl(5 70% 42%);
   --border: hsl(226 14% 82%);
   --input: hsl(226 14% 78%);
+  --overlay: hsl(226 30% 11% / 0.1);
   --ring: hsl(24 96% 49%);
   --chart-1: hsl(226 42% 15%);
   --chart-2: hsl(226 20% 45%);
@@ -110,6 +112,7 @@
   --destructive: hsl(5 75% 58%);
   --border: hsl(226 12% 22%);
   --input: hsl(226 12% 26%);
+  --overlay: hsl(226 30% 3% / 0.45);
   --ring: hsl(24 95% 55%);
   --chart-1: hsl(45 20% 93%);
   --chart-2: hsl(226 8% 64%);

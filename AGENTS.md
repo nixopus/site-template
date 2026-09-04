@@ -82,6 +82,8 @@ This template is a chassis wearing a disposable demo identity.
 ## Components
 - Small and composable: one block per file, ≤80 lines target, 120 hard cap (build fails).
   `src/components/ui/` (vendored primitives) is exempt.
+- `src/components/ui/` is the stdlib: pre-vendored shadcn primitives, allowed to sit unused,
+  never counted as dead code. Reach for it before authoring an interaction pattern by hand.
 - Edit, don't regenerate. Change the lines that need changing; never rewrite a file to make a
   small change. Reuse existing blocks and primitives before writing new ones.
 - New sections go in `src/components/blocks/`; pages compose blocks and hold no styling logic.
