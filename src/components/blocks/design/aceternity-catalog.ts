@@ -1,0 +1,163 @@
+/* The vendored Aceternity inventory (src/components/ui/aceternity/), grouped for
+   the /design catalog. skin: how much restyling a site owes the piece.
+   - tokens: className passthrough, no baked palette; site tokens apply directly.
+   - themed: ships its own light/dark neutrals or brand colors; restyle at the call site.
+   - props: colors and density are constructor props (canvas, svg or shader). */
+
+export type CatalogEntry = {
+  name: string;
+  when: string;
+  skin: "tokens" | "themed" | "props";
+};
+
+export type CatalogGroup = { group: string; entries: CatalogEntry[] };
+
+export const aceternityCatalog: CatalogGroup[] = [
+  {
+    group: "Backgrounds and atmosphere",
+    entries: [
+      { name: "aurora-background", when: "Soft moving gradient wash behind a hero", skin: "themed" },
+      { name: "background-beams", when: "Thin light paths drifting behind dark content", skin: "themed" },
+      { name: "background-beams-with-collision", when: "Beams that strike a floor and burst", skin: "themed" },
+      { name: "background-boxes", when: "Hover-reactive grid of tiles behind a headline", skin: "themed" },
+      { name: "background-gradient-animation", when: "Slow blobbed gradient field, full bleed", skin: "props" },
+      { name: "background-lines", when: "Wandering line paths as a hero backdrop", skin: "themed" },
+      { name: "background-ripple-effect", when: "Click ripples across a cell grid", skin: "themed" },
+      { name: "canvas-reveal-effect", when: "Dot-matrix reveal on hover (three.js)", skin: "props" },
+      { name: "cloud-shader", when: "Volumetric cloud shader panel", skin: "props" },
+      { name: "dither-shader", when: "Retro dithered gradient surface", skin: "props" },
+      { name: "dotted-glow-background", when: "Dot field with a soft glow pulse", skin: "props" },
+      { name: "glowing-stars", when: "Star grid that glints inside a card", skin: "themed" },
+      { name: "google-gemini-effect", when: "Scroll-drawn svg strands, one tall section", skin: "themed" },
+      { name: "grid", when: "Static dot-grid texture patch", skin: "themed" },
+      { name: "lamp", when: "Stage-light section opener over dark ground", skin: "themed" },
+      { name: "meteors", when: "Falling streaks across a card corner", skin: "themed" },
+      { name: "noise-background", when: "Film-grain texture over a surface", skin: "props" },
+      { name: "shooting-stars", when: "Occasional streaks over a starfield", skin: "props" },
+      { name: "sparkles", when: "Particle shimmer under a wordmark", skin: "props" },
+      { name: "spotlight", when: "One entrance light sweep on a dark hero", skin: "props" },
+      { name: "spotlight-new", when: "Layered ambient spotlight, always on", skin: "props" },
+      { name: "stars-background", when: "Dense twinkling starfield canvas", skin: "props" },
+      { name: "vortex", when: "Swirling particle stream behind a message", skin: "props" },
+      { name: "wavy-background", when: "Simplex waves rolling under a headline", skin: "props" },
+    ],
+  },
+  {
+    group: "Cards and surfaces",
+    entries: [
+      { name: "3d-card", when: "Card whose children float on mouse tilt", skin: "tokens" },
+      { name: "background-gradient", when: "Animated gradient border wrap for one card", skin: "themed" },
+      { name: "bento-grid", when: "Mixed-size feature grid, the catalog staple", skin: "themed" },
+      { name: "card-hover-effect", when: "Grid where a highlight follows the cursor between cards", skin: "themed" },
+      { name: "card-spotlight", when: "Radial torch inside a card on hover", skin: "themed" },
+      { name: "card-stack", when: "Auto-cycling stack of short quotes", skin: "themed" },
+      { name: "comet-card", when: "Tilting card with a comet sheen", skin: "tokens" },
+      { name: "direction-aware-hover", when: "Image card whose overlay enters from the cursor side", skin: "themed" },
+      { name: "draggable-card", when: "Cards you can throw around a pen", skin: "themed" },
+      { name: "evervault-card", when: "Encrypted-text hover surface for security stories", skin: "themed" },
+      { name: "focus-cards", when: "Grid that blurs the cards you are not on", skin: "themed" },
+      { name: "following-pointer", when: "Card with a labeled custom cursor", skin: "themed" },
+      { name: "glare-card", when: "Holographic glare on tilt", skin: "themed" },
+      { name: "glowing-effect", when: "Border glow that tracks the pointer", skin: "themed" },
+      { name: "tooltip-card", when: "Rich hover card anchored to a trigger", skin: "tokens" },
+      { name: "wobble-card", when: "Card that shifts and skews on hover", skin: "themed" },
+    ],
+  },
+  {
+    group: "Text effects",
+    entries: [
+      { name: "ascii-art", when: "Image rendered as animated ascii", skin: "themed" },
+      { name: "canvas-text", when: "Particle text drawn on canvas", skin: "props" },
+      { name: "colourful-text", when: "Per-letter color cycling in a headline word", skin: "tokens" },
+      { name: "container-text-flip", when: "A word slot that flips through options", skin: "themed" },
+      { name: "encrypted-text", when: "Scramble-in reveal for short labels", skin: "tokens" },
+      { name: "flip-words", when: "Rotating word inside a sentence", skin: "tokens" },
+      { name: "hero-highlight", when: "Marker-pen highlight sweep plus dot ground", skin: "themed" },
+      { name: "layout-text-flip", when: "Layout-animated word swap with a chrome pill", skin: "themed" },
+      { name: "pointer-highlight", when: "Draws a box around a phrase when it scrolls in", skin: "themed" },
+      { name: "squiggly-text", when: "Hand-drawn wobble under or through a word", skin: "tokens" },
+      { name: "text-flipping-board", when: "Split-flap departures board", skin: "themed" },
+      { name: "text-generate-effect", when: "Words fade in one by one on view", skin: "themed" },
+      { name: "text-hover-effect", when: "Outline type filled by the cursor", skin: "themed" },
+      { name: "text-reveal-card", when: "Wipe-to-reveal answer inside a card", skin: "themed" },
+      { name: "typewriter-effect", when: "Cursor-typed headline", skin: "themed" },
+    ],
+  },
+  {
+    group: "Navigation and chrome",
+    entries: [
+      { name: "floating-dock", when: "macOS-style dock for app links", skin: "themed" },
+      { name: "floating-navbar", when: "Nav pill that hides on scroll down, returns on up", skin: "themed" },
+      { name: "navbar-menu", when: "Hover mega-menu with product entries", skin: "themed" },
+      { name: "notch", when: "Dynamic-island chrome for badges", skin: "themed" },
+      { name: "resizable-navbar", when: "Nav bar that shrinks as you scroll", skin: "themed" },
+      { name: "sidebar", when: "Collapsing app sidebar with icon rail", skin: "themed" },
+      { name: "sticky-banner", when: "Dismissible announcement strip", skin: "themed" },
+      { name: "tabs", when: "Animated tab row where panels trail the switch", skin: "themed" },
+    ],
+  },
+  {
+    group: "Scroll and showcase",
+    entries: [
+      { name: "3d-globe", when: "Rotating globe with markers (three.js)", skin: "props" },
+      { name: "3d-marquee", when: "Angled scrolling wall of screenshots", skin: "themed" },
+      { name: "3d-pin", when: "Map-pin hover reveal for a link", skin: "themed" },
+      { name: "animated-testimonials", when: "Quote deck with portrait crossfade; needs real, attributed quotes", skin: "themed" },
+      { name: "animated-tooltip", when: "Avatar row with springy name tags", skin: "themed" },
+      { name: "apple-cards-carousel", when: "Full-screen story cards in a snap row", skin: "themed" },
+      { name: "carousel", when: "Slide deck with keyboard and button control", skin: "themed" },
+      { name: "compare", when: "Before/after slider between two images", skin: "props" },
+      { name: "container-scroll-animation", when: "Screenshot in a tablet that tilts up on scroll", skin: "themed" },
+      { name: "globe", when: "Arcs-between-cities github globe (three.js)", skin: "props" },
+      { name: "hero-parallax", when: "Product grid that shears past the headline", skin: "themed" },
+      { name: "images-slider", when: "Full-bleed keyboard-driven image fade deck", skin: "themed" },
+      { name: "infinite-moving-cards", when: "Looping card marquee for quotes or logos", skin: "themed" },
+      { name: "layout-grid", when: "Grid where a tile expands in place to tell its story", skin: "themed" },
+      { name: "lens", when: "Magnifier circle over an image or chart", skin: "tokens" },
+      { name: "macbook-scroll", when: "Laptop that opens as the page scrolls", skin: "themed" },
+      { name: "parallax-hero-images", when: "Hero image layers drifting at different rates", skin: "tokens" },
+      { name: "parallax-scroll", when: "Two-speed masonry of images", skin: "tokens" },
+      { name: "parallax-scroll-2", when: "Variant masonry with a third column", skin: "tokens" },
+      { name: "sticky-scroll-reveal", when: "Copy list pinned beside a swapping preview", skin: "themed" },
+      { name: "timeline", when: "Scroll-drawn vertical history with a progress beam", skin: "themed" },
+      { name: "tracing-beam", when: "Article gutter beam that follows reading position", skin: "themed" },
+      { name: "world-map", when: "Dotted world map with animated routes", skin: "props" },
+    ],
+  },
+  {
+    group: "Interaction and input",
+    entries: [
+      { name: "animated-modal", when: "Dialog with staged entrance", skin: "themed" },
+      { name: "chromatic-image", when: "RGB-split hover distortion on an image", skin: "props" },
+      { name: "code-block", when: "Highlighted source with tabs and copy", skin: "themed" },
+      { name: "cover", when: "Warp-speed highlight behind a phrase", skin: "themed" },
+      { name: "file-upload", when: "Drag-drop upload surface with file list", skin: "themed" },
+      { name: "gooey-input", when: "Input whose label melts between states", skin: "tokens" },
+      { name: "hover-border-gradient", when: "Border light that circles a button", skin: "themed" },
+      { name: "images-badge", when: "Overlapping avatar badge with count", skin: "themed" },
+      { name: "input", when: "Text input with pointer-lit border", skin: "themed" },
+      { name: "keyboard", when: "Illustrated keyboard with pressable keys", skin: "themed" },
+      { name: "label", when: "Form label matched to the aceternity input", skin: "tokens" },
+      { name: "link-preview", when: "Hover card showing a live page screenshot", skin: "themed" },
+      { name: "loader", when: "Assorted loading glyphs", skin: "themed" },
+      { name: "magnetic-button", when: "Button that leans toward the cursor", skin: "tokens" },
+      { name: "moving-border", when: "A light tracing a button's outline", skin: "themed" },
+      { name: "multi-step-loader", when: "Checklist loader for long operations", skin: "themed" },
+      { name: "pixelated-canvas", when: "Image that shatters into pixels on hover", skin: "props" },
+      { name: "placeholders-and-vanish-input", when: "Search input whose text vaporizes on submit", skin: "themed" },
+      { name: "scales", when: "Ruled scale texture strip", skin: "tokens" },
+      { name: "stateful-button", when: "Button that plays its own success state", skin: "themed" },
+      { name: "svg-mask-effect", when: "Cursor-held mask revealing a second layer", skin: "themed" },
+      { name: "tailwindcss-buttons", when: "Grab-bag of button treatments", skin: "themed" },
+      { name: "terminal", when: "Fake shell session with typed output", skin: "themed" },
+      { name: "webcam-pixel-grid", when: "Visitor's camera as a pixel wall (asks permission)", skin: "props" },
+    ],
+  },
+];
+
+export const aceternityNotes = [
+  "Vendored via scripts/vendor-aceternity.mjs; refresh re-downloads the registry.",
+  "timeline: stock demo copy replaced by title/description props at vendor time.",
+  "expandable-card is the one registry item behind a paywall login; not vendored.",
+  "Composition rule: these serve the DESIGN.md direction. Assembling the stock dark-hero-plus-beams-plus-sparkles look is the cliche the slop list bans.",
+];

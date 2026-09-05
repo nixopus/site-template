@@ -7,7 +7,10 @@ import { join, relative } from "node:path";
 
 const ROOT = new URL("..", import.meta.url).pathname;
 const SRC = join(ROOT, "src");
-const VENDORED = join("src", "components", "ui"); // shadcn primitives: exempt from the line cap
+// Vendored stdlib (shadcn primitives + ui/aceternity): exempt from the line cap and
+// from token/copy mechanics we don't author (raw colors, em dashes). Our blocks never are.
+const VENDORED = join("src", "components", "ui");
+const notVendored = (file) => !file.includes(VENDORED);
 
 const PALETTE =
   "(white|black|slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)";
@@ -24,13 +27,13 @@ const RULES = [
   {
     id: "no-raw-palette",
     why: "Style through semantic tokens (AGENTS.md > Styling). Add a token to globals.css instead.",
-    applies: (file) => file.endsWith(".tsx"),
+    applies: (file) => file.endsWith(".tsx") && notVendored(file),
     check: perLine(new RegExp(`(?<![\\w-])${PREFIX}-${PALETTE}(?![\\w])`)),
   },
   {
     id: "no-raw-color-values",
     why: "No hex/rgb/hsl literals in components — colors live in globals.css as tokens.",
-    applies: (file) => file.endsWith(".tsx"),
+    applies: (file) => file.endsWith(".tsx") && notVendored(file),
     check: perLine(/\[#[0-9a-fA-F]{3,8}\]|\[(?:rgb|hsl)a?\(/),
   },
   {
@@ -51,7 +54,7 @@ const RULES = [
   {
     id: "no-em-dash",
     why: "No em dashes in site copy (AGENTS.md > Copy). Restructure the sentence.",
-    applies: (file) => /\.(tsx|ts)$/.test(file),
+    applies: (file) => /\.(tsx|ts)$/.test(file) && notVendored(file),
     check: perLine(/—/),
   },
   {
@@ -109,18 +112,36 @@ for (const path of walk(SRC)) {
   }
 }
 
-// Decoration libraries: vendor the one component as a block instead (AGENTS.md > Components).
-const DECORATION_DEPS = ["aceternity", "magicui", "magic-ui", "framer-motion", "tsparticles"];
-const DECORATION_ALLOWED = new Set(); // add a name here only with a written justification
+// The dependency set is FROZEN to the template's (AGENTS.md > Components): sites are
+// authored remotely and never npm-install, so a drifted manifest means something is wrong.
+// Changing this table is a template decision, made here, with the lockfile in the same commit.
+const TEMPLATE_DEPS = [
+  "@radix-ui/react-hover-card", "@radix-ui/react-label", "@radix-ui/react-tabs",
+  "@react-three/drei", "@react-three/fiber", "@tabler/icons-react",
+  "@tsparticles/engine", "@tsparticles/react", "@tsparticles/slim",
+  "class-variance-authority", "cn", "dotted-map", "lucide-react", "mini-svg-data-uri",
+  "motion", "next", "next-themes", "qss", "radix-ui", "react", "react-dom",
+  "react-dropzone", "react-syntax-highlighter", "shadcn", "simplex-noise",
+  "tailwind-merge", "three", "three-globe", "tw-animate-css",
+  "@tailwindcss/postcss", "@types/node", "@types/react", "@types/react-dom",
+  "@types/react-syntax-highlighter", "@types/three", "eslint", "eslint-config-next",
+  "tailwindcss", "typescript",
+];
 const pkg = JSON.parse(readFileSync(join(ROOT, "package.json"), "utf8"));
-const noDecorationDeps = {
-  id: "no-decoration-deps",
-  why: "UI libraries are never added for looks (AGENTS.md > Components). Vendor the single component as a block.",
+const frozenDeps = {
+  id: "frozen-dependency-set",
+  why: "The stdlib is fixed (AGENTS.md > Components): vocabulary comes from what is vendored, never from npm install.",
 };
-for (const name of Object.keys({ ...pkg.dependencies, ...pkg.devDependencies })) {
-  const banned = name === "motion" || DECORATION_DEPS.some((dep) => name.includes(dep));
-  if (banned && !DECORATION_ALLOWED.has(name)) {
-    violations.push({ file: "package.json", rule: noDecorationDeps, line: 1, excerpt: name });
+const declared = new Set(Object.keys({ ...pkg.dependencies, ...pkg.devDependencies }));
+const expected = new Set(TEMPLATE_DEPS);
+for (const name of declared) {
+  if (!expected.has(name)) {
+    violations.push({ file: "package.json", rule: frozenDeps, line: 1, excerpt: `added: ${name}` });
+  }
+}
+for (const name of expected) {
+  if (!declared.has(name)) {
+    violations.push({ file: "package.json", rule: frozenDeps, line: 1, excerpt: `removed: ${name}` });
   }
 }
 

@@ -4,10 +4,15 @@ import { EmptyState } from "@/components/blocks/app/empty-state";
 import { SettingsForm } from "@/components/blocks/app/settings-form";
 import { SignIn } from "@/components/blocks/app/sign-in";
 import { StatRow } from "@/components/blocks/app/stat-row";
+import { AceternityBoard } from "@/components/blocks/design/aceternity-board";
+import { AceternityDemos } from "@/components/blocks/design/aceternity-demos";
+import { ArtifactsBoard } from "@/components/blocks/design/artifacts-board";
+import { MotionBoard } from "@/components/blocks/design/motion-board";
 import { PrimitivesBoard } from "@/components/blocks/design/primitives-board";
 import { Specimen } from "@/components/blocks/design/specimen";
 import { SwatchGrid } from "@/components/blocks/design/swatch-grid";
 import { TypeSpecimen } from "@/components/blocks/design/type-specimen";
+import { ScrollProgress } from "@/components/blocks/motion/scroll-progress";
 import { ThemeToggle } from "@/components/blocks/theme-toggle";
 
 export const metadata: Metadata = {
@@ -19,6 +24,7 @@ export const metadata: Metadata = {
 export default function DesignPage() {
   return (
     <main className="mx-auto w-full max-w-6xl flex-1 border-x border-border px-6 py-16 md:px-12">
+      <ScrollProgress />
       <header className="pb-12">
         <p className="type-overline text-muted-foreground">Reference</p>
         <h1 className="type-display mt-4 text-[clamp(2rem,5vw+0.5rem,3.75rem)]">Design system</h1>
@@ -43,6 +49,10 @@ export default function DesignPage() {
       <Specimen title="Primitives" note="components/ui">
         <PrimitivesBoard />
       </Specimen>
+      <ArtifactsBoard />
+      <MotionBoard />
+      <AceternityDemos />
+      <AceternityBoard />
       <Specimen title="Stat row" note="blocks/app/stat-row">
         <div className="border border-border">
           <StatRow />
