@@ -39,7 +39,7 @@ export function Reveal({ children, delay = 0, className, style }: RevealProps) {
       ref={ref}
       data-reveal=""
       className={className}
-      style={delay > 0 ? ({ "--reveal-delay": `${delay}ms` } as CSSProperties) : undefined}
+      style={{ ...(delay > 0 ? { "--reveal-delay": `${delay}ms` } : {}), ...style } as CSSProperties}
     >
       {children}
     </div>
