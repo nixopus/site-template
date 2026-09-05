@@ -6,12 +6,13 @@ type RevealProps = {
   children: ReactNode;
   delay?: number;
   className?: string;
+  style?: CSSProperties;
 };
 
 /* Section entrance: IntersectionObserver flips data-reveal once; the
    transition lives in globals.css. Stagger siblings with delay (ms).
    No-JS and reduced-motion readers see content immediately. */
-export function Reveal({ children, delay = 0, className }: RevealProps) {
+export function Reveal({ children, delay = 0, className, style }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
