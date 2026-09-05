@@ -40,6 +40,9 @@ This template is a chassis wearing a disposable demo identity.
   (mock-window, chat-card, marquee, img-slot, section-frame) or equivalents built for the
   site. DESIGN.md's artifact plan names which and where; a page of bare typography is an
   unfinished page, not a minimal one.
+- **Use the shelf (build-enforced):** the landing must import at least one piece from
+  `ui/aceternity/` or `blocks/motion/` (checked one level deep from `page.tsx`). Hand-authored
+  sections alone do not satisfy the artifact plan; a page where nothing moves is a defect.
 
 ## Read first
 - Read `DESIGN.md` before styling anything. It is the brief; obey it. No `DESIGN.md`? Write one

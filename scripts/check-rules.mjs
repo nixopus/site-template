@@ -145,6 +145,32 @@ for (const name of expected) {
   }
 }
 
+// The landing must draw on the vendored shelf: page.tsx's block imports (one level deep)
+// must include at least one piece from ui/aceternity/ or blocks/motion/. A page of static
+// hand-authored sections is an unfinished page, not a minimal one (AGENTS.md > Artifacts).
+const shelfRule = {
+  id: "landing-uses-the-shelf",
+  why: "The landing imports nothing from ui/aceternity/ or blocks/motion/. Work in at least one vendored or motion piece that serves DESIGN.md's direction.",
+};
+try {
+  const pageSrc = readFileSync(join(ROOT, "src/app/page.tsx"), "utf8");
+  const blockPaths = [...pageSrc.matchAll(/from\s+"@\/components\/([^"]+)"/g)].map((m) => m[1]);
+  const shelfHit = (s) => /@\/components\/(ui\/aceternity\/|blocks\/motion\/)/.test(s);
+  let uses = shelfHit(pageSrc);
+  for (const rel of blockPaths) {
+    if (uses) break;
+    for (const candidate of [`src/components/${rel}.tsx`, `src/components/${rel}/index.tsx`]) {
+      try {
+        if (shelfHit(readFileSync(join(ROOT, candidate), "utf8"))) uses = true;
+        break;
+      } catch { /* try next candidate */ }
+    }
+  }
+  if (!uses) {
+    violations.push({ file: "src/app/page.tsx", rule: shelfRule, line: 1, excerpt: "no ui/aceternity or blocks/motion import reachable from the page" });
+  }
+} catch { /* no landing page to check */ }
+
 console.log(`check-rules: scanned ${scanned} files under src/`);
 if (violations.length > 0) {
   console.error(`\ncheck-rules: ${violations.length} violation(s)\n`);
