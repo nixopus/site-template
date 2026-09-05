@@ -32,10 +32,12 @@ This template is a chassis wearing a disposable demo identity.
   site needs, in the order its one action demands, and build them as new blocks under the
   block rules — adapt a demo block only when it genuinely fits the new architecture. The bold
   move is usually structural; a repaint with new copy is not a new site.
-- **Imagery:** authored SVG/CSS graphics inside the token system are first-class; leave real
-  `<img>` slots for the owner's photography (`blocks/artifacts/img-slot` renders an authored
-  plate until a path arrives); never stock-photo placeholders, never fabricated product or
-  team shots.
+- **Imagery:** stock photography is welcome where the direction calls for photographs —
+  hotlink direct CDN URLs (`images.unsplash.com`, `images.pexels.com`, whitelisted in
+  `next.config.ts`) through `blocks/artifacts/img-slot` or an image piece, choose photos
+  that serve DESIGN.md's direction, and give every one meaningful `alt`. Authored SVG/CSS
+  graphics inside the token system are equally first-class; the owner's own photography
+  replaces stock when it arrives (`img-slot` renders an authored plate until a src is set).
 - **Artifacts:** every landing carries 1-2 manufactured objects — `blocks/artifacts/`
   (mock-window, chat-card, marquee, img-slot, section-frame) or equivalents built for the
   site. DESIGN.md's artifact plan names which and where; a page of bare typography is an

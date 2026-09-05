@@ -9,9 +9,9 @@ type ImgSlotProps = {
   className?: string;
 };
 
-/* A framed slot for the owner's photography. Until a real path arrives it
-   renders an authored plate (hatch texture + crossed diagonals), never a
-   stock photo. Caption reads as a record line under the frame. */
+/* A framed slot for photography, stock or the owner's own. With no src it
+   renders an authored plate (hatch texture + crossed diagonals). Caption
+   reads as a record line under the frame. */
 export function ImgSlot({
   src,
   alt = "",
