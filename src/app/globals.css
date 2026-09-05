@@ -5,12 +5,20 @@
 @custom-variant dark (&:is(.dark *));
 
 /* Semantic token map — components consume ONLY these (see AGENTS.md). */
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+/* Font slots as real custom properties: handwritten classes resolve these at runtime
+   (inside @theme inline they never reach the cascade). */
+:root {
   --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, "SF Mono", monospace;
   --font-heading: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+}
+
+@theme inline {
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SF Mono", monospace;
+  --font-heading: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
