@@ -17,27 +17,37 @@ enforces the machine-checkable subset via `scripts/check-rules.mjs`; the rest is
 This template is a chassis wearing a disposable demo identity.
 - **Chassis (permanent):** the stack, the semantic token SLOTS and their light/dark structure,
   every rule in this file, `scripts/check-rules.mjs`, the block mechanism and the `/design`
-  catalog, the `src/components/ui/` stdlib, the Dockerfile.
+  catalog, the `src/components/ui/` stdlib (shadcn primitives + the vendored Aceternity
+  catalog under `ui/aceternity/`), the artifact and motion vocabulary under
+  `blocks/artifacts/` and `blocks/motion/`, the frozen dependency set, the Dockerfile.
 - **Identity (per-site):** DESIGN.md's content, the token VALUES, the typefaces, the bold move
   and its flourishes — for Ballast: the ruled manifest frame, the registration ticks,
   signal-orange — and all demo copy, **and the page's STRUCTURE**. The marketing blocks under
   `src/components/blocks/marketing/` are the demo's sections: a reference implementation to
   learn the patterns from, never the page vocabulary. A gym is not a freight ledger.
 - The first act on a new site is writing a fresh DESIGN.md (named direction, exact palette,
-  two typefaces, motion numbers, one bold move, **page architecture, imagery plan**) and
+  two typefaces, motion numbers, one bold move, **page architecture, imagery plan, depth
+  stance, artifact plan**) and
   replacing the identity. Never inherit Ballast's look OR its layout: design the sections this
   site needs, in the order its one action demands, and build them as new blocks under the
   block rules — adapt a demo block only when it genuinely fits the new architecture. The bold
   move is usually structural; a repaint with new copy is not a new site.
 - **Imagery:** authored SVG/CSS graphics inside the token system are first-class; leave real
-  `<img>` slots for the owner's photography; never stock-photo placeholders, never fabricated
-  product or team shots.
+  `<img>` slots for the owner's photography (`blocks/artifacts/img-slot` renders an authored
+  plate until a path arrives); never stock-photo placeholders, never fabricated product or
+  team shots.
+- **Artifacts:** every landing carries 1-2 manufactured objects — `blocks/artifacts/`
+  (mock-window, chat-card, marquee, img-slot, section-frame) or equivalents built for the
+  site. DESIGN.md's artifact plan names which and where; a page of bare typography is an
+  unfinished page, not a minimal one.
 
 ## Read first
 - Read `DESIGN.md` before styling anything. It is the brief; obey it. No `DESIGN.md`? Write one
   first: named direction, exact palette as tokens, two typefaces with roles, spacing scale,
   radius stance, type scale, motion timing, page architecture (this site's sections, their
-  order, the layout system), imagery plan. Critique it for genericness, sharpen once, then code.
+  order, the layout system), imagery plan, depth stance (flat-hairline | soft-float | framed,
+  expressed as the `--depth-float` token), artifact plan (which 1-2 artifact blocks the
+  landing carries, and where). Critique it for genericness, sharpen once, then code.
 - When the design direction changes, update `DESIGN.md` in the same commit.
 
 ## Styling
@@ -46,6 +56,8 @@ This template is a chassis wearing a disposable demo identity.
   (`bg-blue-500`, `text-white`, `bg-black/50`) and never hex/rgb/hsl literals in components.
   New color = new token in `src/app/globals.css` (both themes), then use the class.
 - Change the theme by editing tokens in `globals.css`, not by touching components.
+- Depth is a declared axis: DESIGN.md names the stance and `--depth-float` expresses it
+  (the `shadow-float` utility). Components never hard-code a box-shadow.
 - Respect the radius stance and type roles in `DESIGN.md`. Do not add box-shadows, gradients,
   or a third typeface on a whim — that is a `DESIGN.md` change.
 
@@ -90,8 +102,16 @@ This template is a chassis wearing a disposable demo identity.
 ## Components
 - Small and composable: one block per file, ≤80 lines target, 120 hard cap (build fails).
   `src/components/ui/` (vendored primitives) is exempt.
-- `src/components/ui/` is the stdlib: pre-vendored shadcn primitives, allowed to sit unused,
-  never counted as dead code. Reach for it before authoring an interaction pattern by hand.
+- `src/components/ui/` is the stdlib: pre-vendored shadcn primitives + the free Aceternity
+  catalog under `ui/aceternity/` (inventory on `/design`), allowed to sit unused, never
+  counted as dead code. Reach for it before authoring an interaction pattern by hand.
+- Vendored code is exempt from the line cap, the raw-color rules, and the em-dash rule; it is
+  refreshed by `scripts/vendor-aceternity.mjs`, never hand-grown. Our `blocks/` keep full
+  token discipline.
+- Aceternity is vocabulary, not identity: skin pieces to the site's tokens at the call site
+  (className/props). Composing the stock Aceternity look (dark hero + beams + sparkles +
+  spotlight) is the cliché rule violated at composition level; a piece earns its place by
+  serving DESIGN.md's declared direction.
 - Edit, don't regenerate. Change the lines that need changing; never rewrite a file to make a
   small change. Reuse existing blocks and primitives before writing new ones.
 - New sections go in `src/components/blocks/`; pages compose blocks and hold no styling logic.
@@ -102,10 +122,20 @@ This template is a chassis wearing a disposable demo identity.
 - Give-back: a genuinely new component is written AS a block — token-only, within the line
   cap, self-contained under `src/components/blocks/` — and added to the `/design` catalog, so
   it lifts back into the template.
-- Third-party UI libraries are never added for looks (no Aceternity/Magic-UI-style imports;
-  `framer-motion` only if genuinely load-bearing — build fails otherwise). Need such a piece?
-  Vendor the single component in, restyle it to the site's tokens and motion values: it
-  becomes an ordinary block under these rules.
+- The dependency set is FROZEN to the template's (build fails on add or remove): sites are
+  authored remotely and never npm-install. Vocabulary comes from what is vendored; a new
+  package is a template decision made in `scripts/check-rules.mjs` with the lockfile.
+
+## Motion
+- The reduced-motion contract precedes any motion: the kill switch in `globals.css` freezes
+  CSS animation and transitions; `MotionConfig reducedMotion="user"` (theme-provider) stills
+  motion-lib transforms. A hand-rolled rAF or canvas loop must check
+  `prefers-reduced-motion` itself — most vendored canvas pieces do not, so gate them.
+- CSS-first: keyframes, transitions, IntersectionObserver before the `motion` library;
+  `motion` is sanctioned but never for what CSS does in one line.
+- Entrances: `blocks/motion/reveal` (staggered via `delay`; content visible without JS).
+  Loops: `blocks/artifacts/marquee` (hover-pause, edge-fade, aria-hidden duplicate).
+- Motion numbers live in DESIGN.md. No parallax or scroll hijack unless DESIGN.md declares it.
 
 ## Routes & rendering
 - Marketing routes (landing, pricing, about) stay static — no dynamic APIs, no client-side

@@ -76,7 +76,14 @@ headline word inside a 390px viewport.
 - Spacing: 4px base. Inside blocks: 8/12/16/24. Between blocks: 48/64. Section padding:
   96px desktop / 64px mobile. Content column: max-width 72rem.
 - Radius: **0 everywhere.** Sharp corners are the stance; do not soften individual components.
-- Depth: none. No box-shadows. Hierarchy comes from rules, surface shifts (`muted`), and type.
+- Depth stance: **flat-hairline.** No blurred shadows; hierarchy comes from rules, surface
+  shifts (`muted`), and type. Artifacts alone sit on `--depth-float`, a hard 6px offset rule
+  reading as a second sheet under the document — it tracks `border`, so both editions keep it
+  matte. If anything ever *glows*, the stance has been violated.
+- Artifact plan: **two manufactured objects, no more.** The tracking console (record 01)
+  prints inside a `mock-window` titled with its container ID, and the importer strip is a
+  `marquee` — cargo keeps moving. Everything else stays typographic; the manifest frame
+  itself is the page's primary object.
 - Density: whitespace is the conversion tool (`AGENTS.md > Landing density`). The demo holds
   the budgets — subline ≤16 words, record bodies ≤2 sentences, the CTA band one line + one
   button; a weak section loses text and gains space, never the reverse.
@@ -85,6 +92,13 @@ headline word inside a 390px viewport.
 
 - Hover/focus micro: 150ms `cubic-bezier(0.25, 1, 0.5, 1)`.
 - Reveals (accordion): 300ms, same curve. No parallax, no floating blobs, no scroll hijack.
+- Marquee: 32s linear loop, edge-faded, pauses on hover. Section entrances: none — the
+  document is already printed; records do not fade in.
+- One continuously animated mark: the final CTA's outline carries a signal spark
+  (`ui/aceternity/moving-border`, 4s). It is a mark under the signal size rule, not a fill;
+  nothing else on the page loops except the marquee.
+- Reduced motion: everything above stills — the `globals.css` kill switch freezes CSS
+  animation, `MotionConfig reducedMotion="user"` covers the motion-lib spark.
 
 ## 7. Voice (the copy spec — `AGENTS.md > Copy` applies on top)
 

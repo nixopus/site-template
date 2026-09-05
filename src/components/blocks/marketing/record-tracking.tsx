@@ -1,3 +1,5 @@
+import { MockWindow } from "@/components/blocks/artifacts/mock-window";
+
 const stages = [
   { date: "Sep 02", stage: "Factory gate, Huizhou", state: "done" },
   { date: "Sep 04", stage: "Origin port, Qingdao", state: "done" },
@@ -23,32 +25,34 @@ export function RecordTracking() {
           98 carriers · 214 terminals · 6 rail networks
         </p>
       </div>
-      <ol className="border-l border-border">
-        {stages.map((item) => (
-          <li key={item.stage} className="relative flex gap-5 pb-6 pl-6 last:pb-0">
-            <span
-              aria-hidden
-              className={`absolute top-1.5 -left-[4.5px] size-2 ${
-                item.state === "current"
-                  ? "bg-signal"
-                  : item.state === "done"
-                    ? "bg-foreground"
-                    : "border border-border bg-background"
-              }`}
-            />
-            <span className="w-16 shrink-0 font-mono text-xs text-muted-foreground">
-              {item.date}
-            </span>
-            <span
-              className={`text-sm ${
-                item.state === "current" ? "font-medium text-signal" : "text-foreground"
-              }`}
-            >
-              {item.stage}
-            </span>
-          </li>
-        ))}
-      </ol>
+      <MockWindow title="Console · MSKU 4839201" className="self-start">
+        <ol className="border-l border-border">
+          {stages.map((item) => (
+            <li key={item.stage} className="relative flex gap-5 pb-6 pl-6 last:pb-0">
+              <span
+                aria-hidden
+                className={`absolute top-1.5 -left-[4.5px] size-2 ${
+                  item.state === "current"
+                    ? "bg-signal"
+                    : item.state === "done"
+                      ? "bg-foreground"
+                      : "border border-border bg-background"
+                }`}
+              />
+              <span className="w-16 shrink-0 font-mono text-xs text-muted-foreground">
+                {item.date}
+              </span>
+              <span
+                className={`text-sm ${
+                  item.state === "current" ? "font-medium text-signal" : "text-foreground"
+                }`}
+              >
+                {item.stage}
+              </span>
+            </li>
+          ))}
+        </ol>
+      </MockWindow>
     </div>
   );
 }

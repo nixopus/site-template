@@ -1,3 +1,5 @@
+import { Marquee } from "@/components/blocks/artifacts/marquee";
+
 const importers = [
   "Copperline Coffee",
   "Atlas Bicycle Co.",
@@ -7,20 +9,22 @@ const importers = [
   "Bright + Loom",
 ];
 
+/* The proof strip as a workload marquee: names keep moving the way cargo does.
+   Pauses on hover; static under reduced motion. */
 export function LogoStrip() {
   return (
     <div>
       <p className="type-overline text-muted-foreground">Kept moving by</p>
-      <ul className="mt-6 flex flex-wrap items-baseline gap-x-8 gap-y-4 md:justify-between">
+      <Marquee className="mt-6" duration={32}>
         {importers.map((name) => (
-          <li
-            key={name}
-            className="font-heading text-lg font-bold tracking-tight text-muted-foreground"
-          >
-            {name}
-          </li>
+          <span key={name} className="flex items-center gap-12">
+            <span className="font-heading text-lg font-bold tracking-tight whitespace-nowrap text-muted-foreground">
+              {name}
+            </span>
+            <span aria-hidden className="reg-tick" />
+          </span>
         ))}
-      </ul>
+      </Marquee>
     </div>
   );
 }
