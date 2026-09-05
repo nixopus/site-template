@@ -20,16 +20,24 @@ This template is a chassis wearing a disposable demo identity.
   catalog, the `src/components/ui/` stdlib, the Dockerfile.
 - **Identity (per-site):** DESIGN.md's content, the token VALUES, the typefaces, the bold move
   and its flourishes — for Ballast: the ruled manifest frame, the registration ticks,
-  signal-orange — and all demo copy.
+  signal-orange — and all demo copy, **and the page's STRUCTURE**. The marketing blocks under
+  `src/components/blocks/marketing/` are the demo's sections: a reference implementation to
+  learn the patterns from, never the page vocabulary. A gym is not a freight ledger.
 - The first act on a new site is writing a fresh DESIGN.md (named direction, exact palette,
-  two typefaces, motion numbers, one bold move) and replacing the identity. Never inherit
-  Ballast's look: Ballast is the worked example proving the system, not the starting point.
-  Blocks provide structure; their skin follows the new tokens.
+  two typefaces, motion numbers, one bold move, **page architecture, imagery plan**) and
+  replacing the identity. Never inherit Ballast's look OR its layout: design the sections this
+  site needs, in the order its one action demands, and build them as new blocks under the
+  block rules — adapt a demo block only when it genuinely fits the new architecture. The bold
+  move is usually structural; a repaint with new copy is not a new site.
+- **Imagery:** authored SVG/CSS graphics inside the token system are first-class; leave real
+  `<img>` slots for the owner's photography; never stock-photo placeholders, never fabricated
+  product or team shots.
 
 ## Read first
 - Read `DESIGN.md` before styling anything. It is the brief; obey it. No `DESIGN.md`? Write one
   first: named direction, exact palette as tokens, two typefaces with roles, spacing scale,
-  radius stance, type scale, motion timing. Critique it for genericness, sharpen once, then code.
+  radius stance, type scale, motion timing, page architecture (this site's sections, their
+  order, the layout system), imagery plan. Critique it for genericness, sharpen once, then code.
 - When the design direction changes, update `DESIGN.md` in the same commit.
 
 ## Styling
@@ -87,8 +95,10 @@ This template is a chassis wearing a disposable demo identity.
 - Edit, don't regenerate. Change the lines that need changing; never rewrite a file to make a
   small change. Reuse existing blocks and primitives before writing new ones.
 - New sections go in `src/components/blocks/`; pages compose blocks and hold no styling logic.
-- Catalog-first: before writing a new component, check `/design` and `src/components/blocks/`.
-  Compose or extend an existing block; a brand-new component means no block fit — say so.
+- Catalog-first governs ITERATION within a site: before writing a new component on an existing
+  site, check `/design` and `src/components/blocks/` and compose or extend where a block fits.
+  First generation is the exception — there, the page architecture in DESIGN.md decides the
+  sections, and new blocks are the expected outcome, with demo blocks as reference.
 - Give-back: a genuinely new component is written AS a block — token-only, within the line
   cap, self-contained under `src/components/blocks/` — and added to the `/design` catalog, so
   it lifts back into the template.
