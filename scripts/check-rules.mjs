@@ -145,6 +145,33 @@ for (const name of expected) {
   }
 }
 
+// The motion chassis is a fixed file wired through layout.tsx, so a per-site rewrite of
+// globals.css cannot kill the kill switch, the marquee, the reveal, or the Aceternity
+// keyframes (AGENTS.md > Chassis vs identity). globals.css keeps its stdlib imports.
+const chassisRule = {
+  id: "motion-chassis-wired",
+  why: "chassis.css is chassis: keep the file, keep layout.tsx importing it beside globals.css, and keep globals.css's stdlib imports (tailwindcss, tw-animate-css, shadcn/tailwind.css).",
+};
+const chassisWiring = [
+  ["src/app/chassis.css", ["@keyframes marquee", "prefers-reduced-motion"]],
+  ["src/app/layout.tsx", ['"./globals.css"', '"./chassis.css"']],
+  ["src/app/globals.css", ['@import "tailwindcss"', '@import "tw-animate-css"', '@import "shadcn/tailwind.css"']],
+];
+for (const [file, needles] of chassisWiring) {
+  let content = "";
+  try {
+    content = readFileSync(join(ROOT, file), "utf8");
+  } catch {
+    violations.push({ file, rule: chassisRule, line: 1, excerpt: "file missing" });
+    continue;
+  }
+  for (const needle of needles) {
+    if (!content.includes(needle)) {
+      violations.push({ file, rule: chassisRule, line: 1, excerpt: `missing: ${needle}` });
+    }
+  }
+}
+
 // The landing must draw on the vendored shelf: page.tsx's block imports (one level deep)
 // must include at least one piece from ui/aceternity/ or blocks/motion/. A page of static
 // hand-authored sections is an unfinished page, not a minimal one (AGENTS.md > Artifacts).

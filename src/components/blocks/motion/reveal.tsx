@@ -10,7 +10,7 @@ type RevealProps = {
 };
 
 /* Section entrance: IntersectionObserver flips data-reveal once; the
-   transition lives in globals.css. Stagger siblings with delay (ms).
+   transition lives in chassis.css. Stagger siblings with delay (ms).
    No-JS and reduced-motion readers see content immediately. */
 export function Reveal({ children, delay = 0, className, style }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);

@@ -9,7 +9,7 @@ const steps = [
 
 /* The motion vocabulary: reveal entrances, the marquee (artifacts group), and
    the scroll-progress hairline running at the top of this page. All of it
-   freezes under prefers-reduced-motion via the globals.css kill switch. */
+   freezes under prefers-reduced-motion via the chassis.css kill switch. */
 export function MotionBoard() {
   return (
     <Specimen title="Motion" note="blocks/motion · reduced-motion safe">

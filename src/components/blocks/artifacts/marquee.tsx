@@ -9,7 +9,7 @@ type MarqueeProps = {
 };
 
 /* CSS-keyframe phrase marquee: edge-faded, pauses on hover, frozen under
-   reduced motion (globals.css kill switch). Content renders twice for the
+   reduced motion (chassis.css kill switch). Content renders twice for the
    loop; the copy is aria-hidden so nothing is read twice. */
 export function Marquee({ children, reverse = false, duration = 40, className }: MarqueeProps) {
   return (

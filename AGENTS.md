@@ -19,7 +19,10 @@ This template is a chassis wearing a disposable demo identity.
   every rule in this file, `scripts/check-rules.mjs`, the block mechanism and the `/design`
   catalog, the `src/components/ui/` stdlib (shadcn primitives + the vendored Aceternity
   catalog under `ui/aceternity/`), the artifact and motion vocabulary under
-  `blocks/artifacts/` and `blocks/motion/`, the frozen dependency set, the Dockerfile.
+  `blocks/artifacts/` and `blocks/motion/`, the frozen dependency set, the Dockerfile —
+  and `src/app/chassis.css` (marquee, reveal, Aceternity keyframes, the reduced-motion kill
+  switch) with its `layout.tsx` import. A globals.css rewrite replaces token VALUES and must
+  keep the three stdlib `@import`s at the top (build-enforced); it never carries motion CSS.
 - **Identity (per-site):** DESIGN.md's content, the token VALUES, the typefaces, the bold move
   and its flourishes — for Ballast: the ruled manifest frame, the registration ticks,
   signal-orange — and all demo copy, **and the page's STRUCTURE**. The marketing blocks under
@@ -132,7 +135,7 @@ This template is a chassis wearing a disposable demo identity.
   package is a template decision made in `scripts/check-rules.mjs` with the lockfile.
 
 ## Motion
-- The reduced-motion contract precedes any motion: the kill switch in `globals.css` freezes
+- The reduced-motion contract precedes any motion: the kill switch in `chassis.css` freezes
   CSS animation and transitions; `MotionConfig reducedMotion="user"` (theme-provider) stills
   motion-lib transforms. A hand-rolled rAF or canvas loop must check
   `prefers-reduced-motion` itself — most vendored canvas pieces do not, so gate them.

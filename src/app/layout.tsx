@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Archivo, IBM_Plex_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
+import "./chassis.css";
 
 const archivo = Archivo({
   variable: "--font-archivo",
