@@ -1,0 +1,20 @@
+# Every push is checked the way the deploy image builds it: rules, then the production build.
+# Failures surface as file/line annotations on the commit, readable through the checks API.
+name: check
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Rules
+        run: node scripts/check-rules.mjs
+      - name: Build
+        shell: bash
+        run: npx next build 2>&1 | node scripts/annotate-build.mjs

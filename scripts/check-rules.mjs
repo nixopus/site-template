@@ -219,6 +219,9 @@ console.log(`check-rules: scanned ${scanned} files under src/`);
 if (violations.length > 0) {
   console.error(`\ncheck-rules: ${violations.length} violation(s)\n`);
   for (const v of violations) {
+    if (process.env.GITHUB_ACTIONS) {
+      console.log(`::error file=${v.file},line=${v.line}::[${v.rule.id}] ${v.excerpt}. ${v.rule.why}`);
+    }
     console.error(`  ${v.file}:${v.line}  [${v.rule.id}]  ${v.excerpt}`);
     console.error(`    ↳ ${v.rule.why}\n`);
   }
