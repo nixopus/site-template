@@ -16,18 +16,35 @@ function fail(path, message) {
   if (process.env.GITHUB_ACTIONS) console.log(`::error file=src/app/page.tsx,line=1::smoke ${path}: ${message}`);
 }
 
+// A private app redirects to its sign-in page; with SMOKE_EMAIL/SMOKE_PASSWORD set the crawl
+// signs in once and walks the protected screens too.
+async function signInIfAsked(page) {
+  const email = process.env.SMOKE_EMAIL;
+  const password = process.env.SMOKE_PASSWORD;
+  const form = await page.$("input[type=password]");
+  if (!email || !password || !form) return false;
+  await page.fill("input[type=email], input[name=email]", email);
+  await page.fill("input[type=password]", password);
+  await Promise.all([page.waitForLoadState("networkidle"), page.press("input[type=password]", "Enter")]);
+  await page.waitForTimeout(500);
+  return !(await page.$("input[type=password]"));
+}
+
 const browser = await chromium.launch();
+const context = await browser.newContext();
 const queue = ["/"];
 const seen = new Set(queue);
 
 while (queue.length && seen.size <= MAX_PAGES) {
   const path = queue.shift();
   for (const width of WIDTHS) {
-    const page = await browser.newPage({ viewport: { width, height: 900 } });
+    const page = await context.newPage();
+    await page.setViewportSize({ width, height: 900 });
     page.on("console", (m) => m.type() === "error" && fail(path, `console error at ${width}px: ${m.text().slice(0, 200)}`));
     page.on("pageerror", (e) => fail(path, `page error at ${width}px: ${e.message.slice(0, 200)}`));
     const response = await page.goto(BASE + path, { waitUntil: "networkidle" }).catch((e) => fail(path, e.message));
     if (response && response.status() >= 400) fail(path, `HTTP ${response.status()} (linked from the site)`);
+    if (await signInIfAsked(page)) await page.goto(BASE + path, { waitUntil: "networkidle" });
     const report = await page.evaluate(() => {
       const wide = document.documentElement.scrollWidth - window.innerWidth;
       const culprit = [...document.querySelectorAll("body *")]

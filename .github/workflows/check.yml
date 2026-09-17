@@ -21,6 +21,9 @@ jobs:
       - name: Smoke
         shell: bash
         run: |
+          export SESSION_SECRET=ci-smoke-secret-0123456789abcdef0123 DATA_DIR=/tmp/smoke-data
+          export FOUNDER_EMAIL=smoke@example.com FOUNDER_PASSWORD=smoke-password-123
+          export SMOKE_EMAIL=$FOUNDER_EMAIL SMOKE_PASSWORD=$FOUNDER_PASSWORD
           npx next start -p 3000 -H 127.0.0.1 > /tmp/next.log 2>&1 &
           for i in $(seq 60); do curl -s -o /dev/null http://127.0.0.1:3000/ && break; sleep 1; done
           npm i --no-save --no-audit --no-fund playwright@1.55.0
