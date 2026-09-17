@@ -37,6 +37,7 @@
   --color-border: var(--border);
   --color-overlay: var(--overlay);
   --color-destructive: var(--destructive);
+  --color-positive: var(--positive);
   --color-signal-foreground: var(--signal-foreground);
   --color-signal: var(--signal);
   --color-accent-foreground: var(--accent-foreground);
@@ -82,6 +83,7 @@
   --signal: hsl(24 96% 49%);
   --signal-foreground: hsl(45 25% 96.5%);
   --destructive: hsl(5 70% 42%);
+  --positive: hsl(152 55% 30%);
   --border: hsl(226 14% 82%);
   --input: hsl(226 14% 78%);
   --overlay: hsl(226 30% 11% / 0.1);
@@ -123,6 +125,7 @@
   --signal: hsl(24 95% 55%);
   --signal-foreground: hsl(226 25% 8%);
   --destructive: hsl(5 75% 58%);
+  --positive: hsl(152 45% 55%);
   --border: hsl(226 12% 22%);
   --input: hsl(226 12% 26%);
   --overlay: hsl(226 30% 3% / 0.45);

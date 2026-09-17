@@ -172,6 +172,23 @@ for (const [file, needles] of chassisWiring) {
   }
 }
 
+// DESIGN.md declares what kind of site this is, and the kind decides which rules apply:
+// landing (marketing page), app (dashboard, admin, tool, portal, anything signed in),
+// content (blog, docs, portfolio). A missing or unknown kind fails: it is the first decision.
+const KINDS = ["landing", "app", "content"];
+const kindRule = {
+  id: "design-declares-kind",
+  why: `DESIGN.md must carry a line \`**Kind:** <${KINDS.join(" | ")}>\` (AGENTS.md > Site kind).`,
+};
+let siteKind = null;
+try {
+  const design = readFileSync(join(ROOT, "DESIGN.md"), "utf8");
+  siteKind = design.match(/^\*\*Kind:\*\*\s*([a-z]+)/m)?.[1] ?? null;
+} catch { /* reported below */ }
+if (!KINDS.includes(siteKind)) {
+  violations.push({ file: "DESIGN.md", rule: kindRule, line: 1, excerpt: siteKind ? `unknown kind: ${siteKind}` : "no **Kind:** line" });
+}
+
 // The landing must draw on the vendored shelf: page.tsx's block imports (one level deep)
 // must include at least one piece from ui/aceternity/ or blocks/motion/. A page of static
 // hand-authored sections is an unfinished page, not a minimal one (AGENTS.md > Artifacts).
@@ -179,7 +196,7 @@ const shelfRule = {
   id: "landing-uses-the-shelf",
   why: "The landing imports nothing from ui/aceternity/ or blocks/motion/. Work in at least one vendored or motion piece that serves DESIGN.md's direction.",
 };
-try {
+if (siteKind === "landing") try {
   const pageSrc = readFileSync(join(ROOT, "src/app/page.tsx"), "utf8");
   const blockPaths = [...pageSrc.matchAll(/from\s+"@\/components\/([^"]+)"/g)].map((m) => m[1]);
   const shelfHit = (s) => /@\/components\/(ui\/aceternity\/|blocks\/motion\/)/.test(s);

@@ -41,21 +41,37 @@ This template is a chassis wearing a disposable demo identity.
   that serve DESIGN.md's direction, and give every one meaningful `alt`. Authored SVG/CSS
   graphics inside the token system are equally first-class; the owner's own photography
   replaces stock when it arrives (`img-slot` renders an authored plate until a src is set).
-- **Artifacts:** every landing carries 1-2 manufactured objects — `blocks/artifacts/`
+- **Artifacts (kind: landing):** every landing carries 1-2 manufactured objects — `blocks/artifacts/`
   (mock-window, chat-card, marquee, img-slot, section-frame) or equivalents built for the
   site. DESIGN.md's artifact plan names which and where; a page of bare typography is an
   unfinished page, not a minimal one.
-- **Use the shelf (build-enforced):** the landing must import at least one piece from
+- **Use the shelf (kind: landing, build-enforced):** the landing must import at least one piece from
   `ui/aceternity/` or `blocks/motion/` (checked one level deep from `page.tsx`). Hand-authored
   sections alone do not satisfy the artifact plan; a page where nothing moves is a defect.
+
+## Site kind (decide first, build-enforced)
+Build what was asked, never what the demo happens to be. `DESIGN.md` declares
+`**Kind:** landing | app | content` and the kind decides the architecture and which rules bind:
+
+| Kind | What it is | `/` is | Binding extras |
+|---|---|---|---|
+| `landing` | a marketing page whose job is one action | the landing | Artifacts, Use the shelf, Landing density |
+| `app` | dashboard, admin panel, internal tool, portal, CRM, anything signed in or built on data | the app's home screen (or the sign-in when the whole app is private) | App screens |
+| `content` | blog, docs, portfolio, knowledge base | the index | Density applies to intros only |
+
+A request for "a dashboard over this spreadsheet" is `app`: its `/` is the dashboard, not a
+hero page about the dashboard. A request for "a login page" is `app` with a working sign-in.
+A site with both (marketing + product) is `app` with a `(marketing)` route group whose pages
+follow the landing rules.
 
 ## Read first
 - Read `DESIGN.md` before styling anything. It is the brief; obey it. No `DESIGN.md`? Write one
   first: named direction, exact palette as tokens, two typefaces with roles, spacing scale,
   radius stance, type scale, motion timing, page architecture (this site's sections, their
   order, the layout system), imagery plan, depth stance (flat-hairline | soft-float | framed,
-  expressed as the `--depth-float` token), artifact plan (which 1-2 artifact blocks the
-  landing carries, and where). Critique it for genericness, sharpen once, then code.
+  expressed as the `--depth-float` token), artifact plan (landing: which 1-2 artifact blocks
+  it carries, and where; app: the screens, their data, and the states each shows). Critique it
+  for genericness, sharpen once, then code.
 - When the design direction changes, update `DESIGN.md` in the same commit.
 
 ## Styling
@@ -145,9 +161,32 @@ This template is a chassis wearing a disposable demo identity.
   Loops: `blocks/artifacts/marquee` (hover-pause, edge-fade, aria-hidden duplicate).
 - Motion numbers live in DESIGN.md. No parallax or scroll hijack unless DESIGN.md declares it.
 
+## App screens (kind: app)
+- The screen is the product. Lead with what the user came to see (numbers, a list, a form),
+  never a hero, tagline or marketing copy. Dense is correct here; word budgets do not apply.
+- Every data view has all four states: loading (`ui/skeleton`), empty (`blocks/app/empty-state`
+  with the next action), error (what happened, what to do), and populated.
+- Charts: `blocks/charts/` (line-chart, bar-chart, bar-list, stat-tile, chart-frame). One axis
+  per chart; series colours are `chart-1..5` in fixed order; ship the table view
+  (`ChartFrame table=`); a headline number is a `stat-tile`, not a chart. No chart package.
+- Filters and selected period live in the URL (`searchParams`), so a view is shareable and
+  survives reload. Navigation between screens is real routes, not tabs faking pages.
+- Numbers are formatted for the audience's locale (`formatValue` in `blocks/charts/scale`),
+  with units stated.
+- Sign-in is real or absent, never decorative: `lib/server/session` (signed httpOnly cookie,
+  `SESSION_SECRET`), `lib/server/password` (scrypt), users in `lib/server/db`. Protect routes
+  in the Server Component or Server Action that reads the data (`getSession()`, then
+  `redirect("/sign-in")`); `src/proxy.ts` (Next 16's name for middleware) is only an optimistic
+  redirect, never the authorization.
+- Server logic: Server Actions for mutations from forms, Route Handlers (`app/api/**/route.ts`)
+  for anything called over HTTP. Validate input on the server; return field errors to the form.
+- Persistence: `lib/server/db` (node's built-in SQLite, file in `DATA_DIR`, mounted as a volume
+  in production). Data a site only displays (a snapshot of a spreadsheet) is a typed module under
+  `src/data/` behind one loader function, so a live source replaces the loader, not the views.
+
 ## Routes & rendering
 - Marketing routes (landing, pricing, about) stay static — no dynamic APIs, no client-side
-  data fetching for content. App routes (`/app/...`) may be dynamic.
+  data fetching for content. App routes may be dynamic; `/` is an app route when the kind is `app`.
 - Every page exports `metadata` (title, description) — build fails otherwise. Set OpenGraph
   fields on pages that will be shared.
 - Client components only where interaction demands it; keep `"use client"` out of pages.

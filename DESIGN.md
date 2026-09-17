@@ -6,6 +6,13 @@ direction changes, this file changes in the same commit. This one is the brief f
 site — a fictional freight-operations product called **Ballast** — and doubles as the worked
 example of the format.
 
+**Kind:** landing
+
+The kind is the first decision and the build checks it: `landing` (a marketing page whose job
+is one action), `app` (a dashboard, admin panel, internal tool, portal, anything behind a
+sign-in or built around data), `content` (blog, docs, portfolio). It decides which rules in
+AGENTS.md apply. A dashboard is never a landing.
+
 ## 1. Direction (named, committed)
 
 **Shipping-manifest Swiss.** The page is a printed freight document: a ruled ledger frame,

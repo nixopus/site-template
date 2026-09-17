@@ -5,6 +5,7 @@ import { SettingsForm } from "@/components/blocks/app/settings-form";
 import { SignIn } from "@/components/blocks/app/sign-in";
 import { StatRow } from "@/components/blocks/app/stat-row";
 import { AceternityBoard } from "@/components/blocks/design/aceternity-board";
+import { ChartsBoard } from "@/components/blocks/design/charts-board";
 import { AceternityDemos } from "@/components/blocks/design/aceternity-demos";
 import { ArtifactsBoard } from "@/components/blocks/design/artifacts-board";
 import { MotionBoard } from "@/components/blocks/design/motion-board";
@@ -53,6 +54,7 @@ export default function DesignPage() {
       <MotionBoard />
       <AceternityDemos />
       <AceternityBoard />
+      <ChartsBoard />
       <Specimen title="Stat row" note="blocks/app/stat-row">
         <div className="border border-border">
           <StatRow />
