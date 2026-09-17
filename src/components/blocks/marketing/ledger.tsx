@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 export function LedgerFrame({ children }: { children: ReactNode }) {
   return (
-    <div className="mx-auto w-full max-w-6xl flex-1 border-x border-border">
+    <div className="mx-auto w-full max-w-6xl flex-1 overflow-x-clip border-x border-border">
       {children}
     </div>
   );

@@ -38,6 +38,12 @@ export function formatValue(value: number | null | undefined, decimals = 0, unit
   return unit ? `${text} ${unit}` : text;
 }
 
-export function compact(value: number, locale = "en-IN"): string {
-  return value.toLocaleString(locale, { notation: "compact", maximumFractionDigits: 1 });
+// Axis labels by fixed suffixes, never Intl's compact notation: its locale data differs between
+// Node and browsers (en-IN thousands are "K" on the server, "T" in Chrome), which breaks hydration.
+const SUFFIXES: [number, string][] = [[1e9, "B"], [1e6, "M"], [1e3, "K"]];
+
+export function compact(value: number): string {
+  const [size, suffix] = SUFFIXES.find(([s]) => Math.abs(value) >= s) ?? [1, ""];
+  const scaled = Math.round((value / size) * 10) / 10;
+  return `${scaled}${suffix}`;
 }
